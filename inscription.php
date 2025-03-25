@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <?php include 'navbar.php'; ?>
     <div class="signup-container">
         <h2>Inscription</h2>
         <form action="" method="POST" onsubmit="return validateForm()">
@@ -23,11 +22,12 @@
             <label for="confirm-password">Confirmer le mot de passe :</label>
             <input type="password" id="confirm-password" name="confirm-password" required>
 
+            <p><input type="checkbox" id="check">J'accepte les <a href="conditions.html">JConditions d'utilisation</a></p>
+
             <input type="submit" value="S'inscrire">
         </form>
         <p id="error-msg"></p>
     </div>
-    <?php include 'footer.php' ?>
 
     <script>
         function validateForm() {
