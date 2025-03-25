@@ -10,7 +10,7 @@ Priority Level: Optionnel
 
 ### Gestion Social :
 
-- [X] Création de groupe de discussion
+- [ ] Création de groupe de discussion
 - [ ] Gestion des contacts / Amis
 - [ ] Outils de modération
 - [ ] Personnalisation du profil (pfp, Username)
