@@ -16,19 +16,43 @@ session_start();
             display: flex;
             height: 100vh;
             font-family: Arial, sans-serif;
-            background-color: #36393f;
-            color: white;
-            overflow: hidden; /* Empêche le défilement global */
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow: hidden;
+            transition: background-color 0.3s, color 0.3s;
         }
 
-        /* Barre latérale des serveurs */
+        :root {
+            --bg-color: #36393f;
+            --text-color: white;
+            --sidebar-bg: #202225;
+            --channel-bg: #2f3136;
+            --message-bg: #40444b;
+            --message-sent-bg: #5865f2;
+            --button-bg: #5865f2;
+            --hover-bg: #40444b;
+        }
+
+        .light-mode {
+            --bg-color: white;
+            --text-color: black;
+            --sidebar-bg: #e3e5e8;
+            --channel-bg: #f0f0f0;
+            --message-bg: #dcdcdc;
+            --message-sent-bg: #007bff;
+            --button-bg: #007bff;
+            --hover-bg: #99aab5;
+        }
+
+        /* Sidebar styling */
         .sidebar {
             width: 80px;
-            background-color: #202225;
+            background-color: var(--sidebar-bg);
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 10px 0;
+            transition: background-color 0.3s;
         }
 
         .server-icon {
@@ -36,20 +60,23 @@ session_start();
             height: 60px;
             margin: 10px 0;
             border-radius: 50%;
-            background-color: #5865f2;
+            background-color: var(--button-bg);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
-        /* Barre latérale des canaux */
-        .channels {
+        .server-icon:hover {
+            background-color: var(--hover-bg);
+        }
+
+        .channels, .members {
             width: 240px;
-            background-color: #2f3136;
+            background-color: var(--channel-bg);
             padding: 10px;
-            display: flex;
-            flex-direction: column;
+            transition: background-color 0.3s;
         }
 
         .channel {
@@ -59,10 +86,9 @@ session_start();
         }
 
         .channel:hover {
-            background-color: #40444b;
+            background-color: var(--message-bg);
         }
 
-        /* Zone principale du chat */
         .chat-container {
             flex: 1;
             display: flex;
@@ -80,16 +106,32 @@ session_start();
 
         .message {
             margin-bottom: 10px;
-            background-color: #40444b;
+            background-color: var(--message-bg);
             padding: 10px;
             border-radius: 5px;
-            animation: fadeIn 0.3s ease;
+            display: flex;
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .message.sent {
+            background-color: var(--message-sent-bg);
+            color: white;
+            text-align: right;
+        }
+
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
         }
 
         @keyframes fadeIn {
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
@@ -97,11 +139,11 @@ session_start();
 
         /* Barre d'envoi de message */
         .send-message {
-            background-color: #2f3136;
+            background-color: var(--channel-bg);
             padding: 10px;
             display: flex;
             align-items: center;
-            border-top: 1px solid #40444b;
+            border-top: 1px solid var(--message-bg);
         }
 
         .send-message input {
@@ -109,29 +151,30 @@ session_start();
             padding: 10px;
             border: none;
             border-radius: 5px;
-            background-color: #40444b;
-            color: white;
+            background-color: var(--message-bg);
+            color: var(--text-color);
             outline: none;
         }
 
         .send-message button {
             padding: 10px 20px;
             margin-left: 10px;
-            background-color: #5865f2;
+            background-color: var(--button-bg);
             border: none;
             border-radius: 5px;
             color: white;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         .send-message button:hover {
-            background-color: #4f50e2;
+            background-color: var(--hover-bg);
         }
 
         /* Liste des membres */
         .members {
             width: 240px;
-            background-color: #2f3136;
+            background-color: var(--channel-bg);
             padding: 10px;
         }
 
@@ -180,39 +223,75 @@ session_start();
 </head>
 
 <body>
+    <button class="toggle-mode" onclick="toggleMode()">Mode Sombre/Clair</button>
 
-    <!-- Barre latérale des serveurs -->
     <div class="sidebar">
         <div class="server-icon">🏠</div>
         <div class="server-icon">💬</div>
         <div class="server-icon">🎮</div>
     </div>
 
-    <!-- Barre latérale des canaux -->
     <div class="channels">
         <h3>Salons</h3>
-        <div class="channel" id="general"># général</div>
-        <div class="channel"># annonces</div>
-        <div class="channel"># support</div>
+        <div class="channel" onclick="switchChannel('general')"># général</div>
+        <div class="channel" onclick="switchChannel('annonces')"># annonces</div>
+        <div class="channel" onclick="switchChannel('support')"># support</div>
     </div>
 
-    <!-- Zone principale du chat -->
     <div class="chat-container">
         <div class="chat" id="chat">
-            <h2># général</h2>
-            <div class="message"><strong>Malik :</strong> Salut tout le monde !</div>
-            <div class="message"><strong>Rémi :</strong> Bienvenue sur le projet Discord !</div>
-            <div class="message"><strong>Ash :</strong> Comment ça va ?</div>
+            <!-- Salon général -->
+            <div id="general" class="channel-content active">
+                <h2># général</h2>
+                <div class="message">
+                    <img src="https://via.placeholder.com/50" alt="Malik" class="message-avatar"><strong>Malik :</strong> Salut tout le monde !
+                </div>
+                <div class="message">
+                    <img src="https://via.placeholder.com/50" alt="Rémi" class="message-avatar"><strong>Rémi :</strong> Salut Malik, comment ça va ?
+                </div>
+                <div class="message">
+                    <img src="https://via.placeholder.com/50" alt="Malik" class="message-avatar"><strong>Malik :</strong> Ça va bien, et toi ?
+                </div>
+                <div class="message">
+                    <img src="https://via.placeholder.com/50" alt="Rémi" class="message-avatar"><strong>Rémi :</strong> Ça va, je suis super content de travailler sur ce projet Discord !
+                </div>
+                <div class="message">
+                    <img src="https://via.placeholder.com/50" alt="Ash" class="message-avatar"><strong>Ash :</strong> Moi aussi ! On va bien s'amuser 😎
+                </div>
+                <div class="message">
+                    <img src="https://via.placeholder.com/50" alt="Malik" class="message-avatar"><strong>Malik :</strong> Totalement ! On va avoir un super produit à la fin !
+                </div>
+            </div>
+
+            <!-- Salon annonces -->
+            <div id="annonces" class="channel-content">
+                <h2># annonces</h2>
+                <div class="message">
+                    <img src="https://via.placeholder.com/50" alt="Rémi" class="message-avatar"><strong>Rémi :</strong> Les nouvelles fonctionnalités arrivent bientôt !
+                </div>
+                <div class="message">
+                    <img src="https://via.placeholder.com/50" alt="Ashvin" class="message-avatar"><strong>Ashvin :</strong> Super, j'ai hâte de les tester !
+                </div>
+            </div>
+
+            <!-- Salon support -->
+            <div id="support" class="channel-content">
+                <h2># support</h2>
+                <div class="message">
+                    <img src="https://via.placeholder.com/50" alt="Noah" class="message-avatar"><strong>Noah :</strong> Comment puis-je aider ?
+                </div>
+                <div class="message">
+                    <img src="https://via.placeholder.com/50" alt="Ash" class="message-avatar"><strong>Ash :</strong> J'ai un problème de connexion.
+                </div>
+            </div>
         </div>
 
-        <!-- Barre d'envoi de message -->
         <div class="send-message">
             <input type="text" id="messageInput" placeholder="Envoyer un message...">
             <button id="sendBtn">Envoyer</button>
         </div>
     </div>
 
-    <!-- Liste des membres -->
     <div class="members">
         <h3>Membres en ligne</h3>
         <div class="member"><img src="https://via.placeholder.com/50" alt="Malik">Malik</div>
@@ -222,34 +301,63 @@ session_start();
         <div class="member"><img src="https://via.placeholder.com/50" alt="Ashvin">Ashvin</div>
     </div>
 
-    <!-- JavaScript : Gestion de l'envoi de message -->
     <script>
-        const messageInput = document.getElementById('messageInput');
-        const sendBtn = document.getElementById('sendBtn');
-        const chat = document.getElementById('chat');
+        let currentChannel = "general";
+        const chatMessages = {
+            general: [
+                `<div class='message'><img src='https://via.placeholder.com/50' class='message-avatar' alt='Malik'><strong>Malik :</strong> Salut tout le monde !</div>`,
+                `<div class='message'><img src='https://via.placeholder.com/50' class='message-avatar' alt='Rémi'><strong>Rémi :</strong> Salut Malik, comment ça va ?</div>`,
+                `<div class='message'><img src='https://via.placeholder.com/50' class='message-avatar' alt='Malik'><strong>Malik :</strong> Ça va bien, et toi ?</div>`,
+                `<div class='message'><img src='https://via.placeholder.com/50' class='message-avatar' alt='Rémi'><strong>Rémi :</strong> Ça va, je suis super content de travailler sur ce projet Discord !</div>`,
+                `<div class='message'><img src='https://via.placeholder.com/50' class='message-avatar' alt='Ash'><strong>Ash :</strong> Moi aussi ! On va bien s'amuser 😎</div>`,
+                `<div class='message'><img src='https://via.placeholder.com/50' class='message-avatar' alt='Malik'><strong>Malik :</strong> Totalement ! On va avoir un super produit à la fin !</div>`
+            ],
+            annonces: [
+                `<div class='message'><img src='https://via.placeholder.com/50' class='message-avatar' alt='Rémi'><strong>Rémi :</strong> Les nouvelles fonctionnalités arrivent bientôt !</div>`,
+                `<div class='message'><img src='https://via.placeholder.com/50' class='message-avatar' alt='Ashvin'><strong>Ashvin :</strong> Super, j'ai hâte de les tester !</div>`
+            ],
+            support: [
+                `<div class='message'><img src='https://via.placeholder.com/50' class='message-avatar' alt='Noah'><strong>Noah :</strong> Comment puis-je aider ?</div>`,
+                `<div class='message'><img src='https://via.placeholder.com/50' class='message-avatar' alt='Ash'><strong>Ash :</strong> J'ai un problème de connexion.</div>`
+            ]
+        };
 
-        // Fonction pour envoyer un message
+        function toggleMode() {
+            document.body.classList.toggle("light-mode");
+        }
+
+        function switchChannel(channel) {
+            currentChannel = channel;
+            document.getElementById("chat-title").textContent = `# ${channel}`;
+            updateChat();
+        }
+
+        function updateChat() {
+            const chatContainer = document.getElementById("chat");
+            chatContainer.innerHTML = `<h2 id="chat-title"># ${currentChannel}</h2>`;
+            chatMessages[currentChannel].forEach(message => {
+                chatContainer.innerHTML += message;
+            });
+        }
+
+        document.getElementById("sendBtn").addEventListener("click", sendMessage);
+        document.getElementById("messageInput").addEventListener("keydown", (e) => {
+            if (e.key === "Enter") sendMessage();
+        });
+
         function sendMessage() {
+            const messageInput = document.getElementById("messageInput");
             const messageText = messageInput.value.trim();
             if (messageText !== "") {
-                const newMessage = document.createElement('div');
-                newMessage.classList.add('message');
-                newMessage.innerHTML = `<strong>Vous :</strong> ${messageText}`;
-                chat.appendChild(newMessage);
+                const newMessage = `<div class='message sent'><strong>Vous :</strong> ${messageText}</div>`;
+                chatMessages[currentChannel].push(newMessage);
+                updateChat();
                 messageInput.value = "";
-
-                // Fait défiler vers le dernier message
-                chat.scrollTop = chat.scrollHeight;
             }
         }
 
-        // Envoi du message au clic
-        sendBtn.addEventListener('click', sendMessage);
-
-        // Envoi du message avec "Entrée"
-        messageInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
+        // Initial load
+        updateChat();
     </script>
 
 </body>
