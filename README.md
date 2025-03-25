@@ -27,16 +27,10 @@ Priority Level: Optionnel
 - [ ] Direct message (Texte, Photos, Vidéos, Mp3)
 - [ ] Notifications en cas de messages
 - [ ] Gestion Social :
-
-### Création de groupe de discussion
-
+- [ ] Création de groupe de discussion
 - [ ] Gestion des contacts / Amis
-
-### Outils de modération
-
+- [ ] Outils de modération
 - [ ] Personnalisation du profil (pfp, Username)
-
-### Fonctionnalités facultatives 
-
+- [ ] Fonctionnalités facultatives 
 - [ ] changer le thème
 - [ ] Créer plusieurs serveurs
