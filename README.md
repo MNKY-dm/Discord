@@ -18,5 +18,6 @@ Priority Level: Optionnel
 
 # Envoi de message
 
-- [] Un utilisateur qui as un compte envois peut envoyer un message
-- [] Le serveur affiche les 10 messages les plus récents
+- [ ] Un utilisateur qui as un compte envois peut envoyer un message
+- [ ] Le serveur affiche les 10 messages les plus récents
+- [ ] TBD
