@@ -191,6 +191,25 @@ session_start();
             margin-right: 10px;
         }
 
+        /* Bouton de basculement du thème */
+        .toggle-theme-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: var(--button-bg);
+            border: none;
+            padding: 10px 15px;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-theme-btn:hover {
+            background-color: var(--hover-bg);
+        }
+
         /* Responsive design */
         @media (max-width: 768px) {
             body {
@@ -223,8 +242,6 @@ session_start();
 </head>
 
 <body>
-    <button class="toggle-mode" onclick="toggleMode()">Mode Sombre/Clair</button>
-
     <div class="sidebar">
         <div class="server-icon">🏠</div>
         <div class="server-icon">💬</div>
@@ -300,6 +317,9 @@ session_start();
         <div class="member"><img src="https://via.placeholder.com/50" alt="Noah">Noah</div>
         <div class="member"><img src="https://via.placeholder.com/50" alt="Ashvin">Ashvin</div>
     </div>
+
+    <!-- Bouton de basculement du thème -->
+    <button class="toggle-theme-btn" onclick="toggleMode()">🌙/🌞</button>
 
     <script>
         let currentChannel = "general";
