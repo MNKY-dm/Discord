@@ -15,3 +15,8 @@ Priority Level: Optionnel
 
 - [ ]  L'utilisateur donnes un pseudonyme
 - [ ]  Le pseudonyme est utilisé comme ID dans l'envoi de messages pour différencier la provenance des utilisateurs
+
+# Envoi de message
+
+- [] Un utilisateur qui as un compte envois peut envoyer un message
+- [] Le serveur affiche les 10 messages les plus récents
