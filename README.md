@@ -26,7 +26,9 @@ Priority Level: Optionnel
 
 - [ ] Direct message (Texte, Photos, Vidéos, Mp3)
 - [ ] Notifications en cas de messages
-- [ ] Gestion Social :
+
+### Gestion Social :
+
 - [ ] Création de groupe de discussion
 - [ ] Gestion des contacts / Amis
 - [ ] Outils de modération
