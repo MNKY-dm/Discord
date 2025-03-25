@@ -1,7 +1,22 @@
 # Cahier des charges
 
-Personne: Kiverix 
+Personne: Edouard (Kiverix) 
 Priority Level: Optionnel
+
+# Fonctions Principales
+
+- [ ] Direct message (Texte, Photos, Vidéos, Mp3)
+- [ ] Notifications en cas de messages
+
+### Gestion Social :
+
+- [ ] Création de groupe de discussion
+- [ ] Gestion des contacts / Amis
+- [ ] Outils de modération
+- [ ] Personnalisation du profil (pfp, Username)
+- [ ] Fonctionnalités facultatives 
+- [ ] changer le thème
+- [ ] Créer plusieurs serveurs
 
 # Création d'un serveur
 
@@ -21,18 +36,3 @@ Priority Level: Optionnel
 - [ ] Un utilisateur qui as un compte envois peut envoyer un message
 - [ ] Le serveur affiche les 10 messages les plus récents
 - [ ] TBD
-
-# Fonctions Principales
-
-- [ ] Direct message (Texte, Photos, Vidéos, Mp3)
-- [ ] Notifications en cas de messages
-
-### Gestion Social :
-
-- [ ] Création de groupe de discussion
-- [ ] Gestion des contacts / Amis
-- [ ] Outils de modération
-- [ ] Personnalisation du profil (pfp, Username)
-- [ ] Fonctionnalités facultatives 
-- [ ] changer le thème
-- [ ] Créer plusieurs serveurs
