@@ -16,7 +16,7 @@ Priority Level: Optionnel
 - [ ] Outils de modération
 - [ ] Personnalisation du profil (pdp, Username)
 
-# Création d'un serveur
+### Création d'un serveur
 
 - [ ]  L'utilisateur donne un nom au serveur
 - [ ]  Le formulaire de création prend le nom qui est inscrit
@@ -24,12 +24,12 @@ Priority Level: Optionnel
 - [ ]  Le serveur est ajouté a la BDD
 - [ ]  (Ajouter plus plus tard)
 
-# Création de compte
+### Création de compte
 
 - [ ]  L'utilisateur donne un pseudonyme
 - [ ]  Le pseudonyme est utilisé comme ID dans l'envoi de messages pour différencier la provenance des utilisateurs
 
-# Envoi de message
+### Envoi de message
 
 - [ ] Un utilisateur qui a un compte peut envoyer un message
 - [ ] Le serveur affiche les 10 messages les plus récents
