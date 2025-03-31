@@ -1,9 +1,10 @@
-# Cahier des charges
+### Cahier des charges
 
 Personne: Edouard (Kiverix) 
 Priority Level: Optionnel
 
-# Fonctions Principales
+# Fonctions
+### Fonctions Principales
 
 - [ ] Direct message 
 - [ ] Notifications en cas de messages
