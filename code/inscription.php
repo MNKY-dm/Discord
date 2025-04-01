@@ -65,7 +65,7 @@
             $stmt -> execute();
 
             if($stmt->rowCount() > 0){
-                echo "<p style='color: red;'>Cet email est déja utilisé.</p>";
+                echo "<p style='color: red;'>Un compte avec cet email existe déjà.</p>";
             }else{
                 $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
                 $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
