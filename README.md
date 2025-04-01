@@ -25,7 +25,7 @@ Priority Level: Optionnel
 
 ### Création de compte
 
-- [ ]  L'utilisateur donne un pseudonyme (note: définitionndes limites du pseudo? genre le nombre de charchteres, les chr spéciaux, etc...)
+- [ ]  L'utilisateur donne un pseudonyme (note: définition des limites du pseudo? genre le nombre de caractères, les caractères spéciaux, etc...)
 - [ ]  Le pseudonyme est utilisé comme ID dans l'envoi de messages pour différencier la provenance des utilisateurs
 
 ### Envoi de message
