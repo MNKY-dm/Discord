@@ -316,6 +316,7 @@ session_start();
         <div class="member"><img src="https://via.placeholder.com/50" alt="Ash">Ash</div>
         <div class="member"><img src="https://via.placeholder.com/50" alt="Noah">Noah</div>
         <div class="member"><img src="https://via.placeholder.com/50" alt="Ashvin">Ashvin</div>
+        <div class="member"><img src="https://via.placeholder.com/50" alt="Ashvin">Edouard</div>
     </div>
 
     <!-- Bouton de basculement du thème -->
