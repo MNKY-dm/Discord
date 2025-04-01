@@ -1,7 +1,7 @@
 Pour créer la base de donnée en local :
 
 1. Lancer le serveur sur XAMP/WAMP/MAMP 
-2. Taper l'URL suivant : localhost:8888/phpmyadmin
+2. Taper l'URL suivant : localhost/phpmyadmin
 3. Créer une nouvelle base de donnée et lui donner le nom "discord_bdd"
 4. Créer une nouvelle table dans cette base de données, via l'onglet "SQL" en exécutant cette commande : 
 CREATE TABLE `users` (
