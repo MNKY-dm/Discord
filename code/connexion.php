@@ -24,15 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 header("Location: index.php");
                 exit();
             } else{
-                echo "<p style 'color: red;'>Mot de passe incorrect.</p>";
+                echo "<p style 'color: red;'>Connexion échouée.</p>";
             }
 
         }else{
-            echo "<p syle='color: red;'> Email non trouvé.</p>";
+            echo "<p style='color: red;'>Connexion échouée.</p>";
         }
     }catch (PDOException $e){
         echo "Erreur: " . $e ->getMessage();
-}
+    }
     $conn = null;
     }
 ?>
