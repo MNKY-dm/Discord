@@ -27,6 +27,7 @@ Priority Level: Optionnel
 
 - [ ]  L'utilisateur donne un pseudonyme (note: définition des limites du pseudo? genre le nombre de caractères, les caractères spéciaux, etc...)
 - [ ]  Le pseudonyme est utilisé comme ID dans l'envoi de messages pour différencier la provenance des utilisateurs
+- [ ]  Les détailles du compte doivent etre uniques. (un mail ne peut pas etre réutilisé, tout comme un username. le mot de passe on peut avoir le meme probablement?)
 
 ### Envoi de message
 
