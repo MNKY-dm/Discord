@@ -18,16 +18,16 @@ Priority Level: Optionnel
 
 ### Création d'un serveur
 
-- [ ]  L'utilisateur donne un nom au serveur
-- [ ]  Le formulaire de création prend le nom qui est inscrit
-- [ ]  L'utilisateur est marqué comme admin lors de la création
-- [ ]  Le serveur est ajouté a la BDD
+- [ ] L'utilisateur donne un nom au serveur
+- [ ] Le formulaire de création prend le nom qui est inscrit
+- [ ] L'utilisateur est marqué comme admin lors de la création
+- [ ] Le serveur est ajouté a la BDD
 
 ### Création de compte
 
-- [ ]  L'utilisateur donne un pseudonyme (note: définition des limites du pseudo? genre le nombre de caractères, les caractères spéciaux, etc...)
-- [ ]  Le pseudonyme est utilisé comme ID dans l'envoi de messages pour différencier la provenance des utilisateurs
-- [ ]  Les détailles du compte doivent etre uniques. (un mail ne peut pas etre réutilisé, tout comme un username. le mot de passe on peut avoir le meme probablement?)
+- [ ] L'utilisateur donne un pseudonyme (note: définition des limites du pseudo? genre le nombre de caractères, les caractères spéciaux, etc...)
+- [ ] Le pseudonyme est utilisé comme ID dans l'envoi de messages pour différencier la provenance des utilisateurs
+- [ ] Les détailles du compte doivent etre uniques. (un mail ne peut pas etre réutilisé, tout comme un username. le mot de passe on peut avoir le meme probablement?)
 
 ### Envoi de message
 
