@@ -22,7 +22,7 @@
             <label for="confirm-password">Confirmer le mot de passe :</label>
             <input type="password" id="confirm-password" name="confirm-password" required>
 
-            <p><input type="checkbox" id="check">J'accepte les <a href="conditions.html">JConditions d'utilisation</a></p>
+            <p><input type="checkbox" id="check">J'accepte les <a href="conditions.html">Conditions d'utilisation</a></p>
 
             <input type="submit" value="S'inscrire">
         </form>
