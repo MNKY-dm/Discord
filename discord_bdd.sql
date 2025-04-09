@@ -49,7 +49,6 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
 (798, 'Morgan_Yu', 'morgan.yu@transtar.co', 'FParad0x?'),
 (1, 'michel', 'michel.saumon@gmail.com', '1_897p_sr87&&sh3_'),
 (999, 'BigMan', 'big.man@huge.guy', 'ITSABIGONE');
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
