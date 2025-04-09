@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 08, 2025 at 04:19 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- Hôte : localhost:8889
+-- Généré le : mer. 09 avr. 2025 à 10:42
+-- Version du serveur : 8.0.40
+-- Version de PHP : 8.3.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,41 +18,88 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `discord_bdd`
+-- Base de données : `discord_bdd`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `channels`
+--
+
+CREATE TABLE `channels` (
+  `channel_id` int NOT NULL,
+  `channel_name` varchar(250) NOT NULL,
+  `server_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `member`
+--
+
+CREATE TABLE `member` (
+  `server_id` int NOT NULL,
+  `user_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `messages`
+--
+
+CREATE TABLE `messages` (
+  `message_id` int NOT NULL,
+  `message_content` varchar(250) NOT NULL,
+  `channel_id` int NOT NULL,
+  `message_date` timestamp(6) NOT NULL,
+  `sender_id` int NOT NULL,
+  `receiver_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `server`
+--
+
+CREATE TABLE `server` (
+  `server_id` int NOT NULL,
+  `server_name` varchar(250) NOT NULL,
+  `admin_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `username` varchar(100) NOT NULL,
+  `user_id` int NOT NULL,
+  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
+INSERT INTO `users` (`user_id`, `username`, `email`, `password`) VALUES
+(1, 'michel', 'michel.saumon@gmail.com', '1_897p_sr87&&sh3_'),
+(2, 'mnky', 'dylan.moulin@gmail.com', '$2y$10$.ER2f0/IUc4Wy7KFXPa7ZuJlIKdUXAzNI4xE6ryPDl54wkAhSYWVe'),
+(3, 'Negan', 'lemecdansTWD@oui.non', 'jaimembattedebaseball'),
+(9, 'HorsLaLoi', 'crimedanslesang@prison.libre', 'jesuishorslaloimdr'),
 (18, 'Kiverix', 'edouard@mail.europe', 'mot_de_passe_securise_123456'),
 (19, 'Skyrim', 'criminal.scum@skyrim.game', 'youHaveBrokenTheLaw'),
-(0, 'le_gov_frc', 'gov@gov.gov', 'el_gobierno.gov'),
+(20, 'le_gov_frc', 'gov@gov.gov', 'el_gobierno.gov'),
 (78, 'region_idf', 'iledefrance@europe.unioneuro', 'jaimeleurope121212'),
-(9, 'HorsLaLoi', 'crimedanslesang@prison.libre', 'jesuishorslaloimdr'),
-(3, 'Negan', 'lemecdansTWD@oui.non', 'jaimembattedebaseball'),
 (445, 'LaPireDentitionDeurope', 'dentirion.nulle@miam.com', 'jeSuisLhommeAvecLaPireDentitionDeurope'),
 (798, 'Morgan_Yu', 'morgan.yu@transtar.co', 'FParad0x?'),
-(1, 'michel', 'michel.saumon@gmail.com', '1_897p_sr87&&sh3_'),
 (999, 'BigMan', 'big.man@huge.guy', 'ITSABIGONE');
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 --
 -- Index pour les tables déchargées
@@ -119,7 +166,7 @@ ALTER TABLE `server`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000;
 
 --
 -- Contraintes pour les tables déchargées
