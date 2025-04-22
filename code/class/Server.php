@@ -1,21 +1,22 @@
 <?php
-class Server {
+class Server 
+{
+
+    public $id;
+    public $name;
+    public $creator_id;
+    public $member_list;
 
     public function __construct (int $server_id, string $server_name, int $creator_id) 
     {
         $this->id = $server_id;
         $this->name = $server_name;
         $this->creator_id = $creator_id;
+        $this->member_list = [];
     }
 
-    public function create_channel (int $channel_id, string $channel_name) 
-    {
-        $new_channel = new Channel($channel_id, $channel_name)
-    } 
+    public function addMember (int $member_id) {
 
-    public function adminise (int $member_id, string $member_role)
-    {
-        $admin = new Admin($member_id, $member_role)
     }
 
 }
