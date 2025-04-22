@@ -6,33 +6,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $email = htmlspecialchars(trim($_POST['email']));
     $password = htmlspecialchars(trim($_POST['password']));
 
-    include 'bdd.php';
+    require_once 'bdd.php';
 
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbusername, $dbpassword);
-        $conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $conn -> prepare("SELECT * FROM users WHERE email = :email");
+    $stmt -> bindParam(':email', $email);
+    $stmt -> execute();
+    if ($stmt->rowCount() > 0) {
+        $user = $stmt-> fetch(PDO::FETCH_ASSOC);
 
-        $stmt = $conn -> prepare("SELECT * FROM users WHERE email = :email");
-        $stmt -> bindParam(':email', $email);
-        $stmt -> execute();
-        if ($stmt->rowCount() > 0) {
-            $user = $stmt-> fetch(PDO::FETCH_ASSOC);
-
-            if (password_verify($password, $user['password'])){
-                $_SESSION['username'] = $user['username'];
-                echo "<p style='color: green;'>Connexion réussie !</p>";
-                header("Location: index.php");
-                exit();
-            } else{
-                echo "<p style 'color: red;'>Connexion échouée.</p>";
-            }
-
-        }else{
-            echo "<p style='color: red;'>Connexion échouée.</p>";
+        if (password_verify($password, $user['password'])){
+            $_SESSION['username'] = $user['username'];
+            echo "<p style='color: green;'>Connexion réussie !</p>";
+            header("Location: index.php");
+            exit();
+        } else{
+            echo "<p style 'color: red;'>Connexion échouée.</p>";
         }
-    }catch (PDOException $e){
-        echo "Erreur: " . $e ->getMessage();
+
+    }else{
+        echo "<p style='color: red;'>Connexion échouée.</p>";
     }
+
     $conn = null;
     }
 ?>
