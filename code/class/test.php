@@ -1,6 +1,6 @@
 <?php
 require_once 'Server.php';
-require_once 'bdd.php';
+require_once '../bdd.php';
 
 $server1 = new Server($conn, 'serveur 1', 1);
 

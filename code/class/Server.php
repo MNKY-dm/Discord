@@ -1,5 +1,4 @@
 <?php
-require_once '../bdd.php';
 
 class Server 
 {
@@ -8,27 +7,37 @@ class Server
     public $id;
     public $name;
     public $creator_id;
-    public array $member_list;
+    public array $member_list = [];
 
     public function __construct (PDO $pdo, string $server_name, int $creator_id) 
     {
-        $this->id = $id;
         $this->pdo = $pdo;
         $this->name = $server_name;
         $this->creator_id = $creator_id;
+        
+        // Insérer un nouveau serveur dans la table server
+        $stmt = $this->pdo->prepare("INSERT INTO server (server_name, creator_id, admin_id) VALUES (:name, :creator_id, :admin_id)");
+        $stmt -> bindParam(':name', $this->name);
+        $stmt -> bindParam(':creator_id', $this->creator_id);
+        $stmt -> bindParam(':admin_id', $this->creator_id);
+        $stmt -> execute();
+
+
+        $this->id = $this->pdo->lastInsertId();
+     
         $this->addMember($creator_id);
     }
 
     public function addMember (int $member_id) {
-        if (!in_array($member_id)) {
+        if (!in_array($member_id, $this->member_list)) {
             $this->member_list[] = $member_id;
-            $stmt = $this->pdo->prepare("INSERT INTO members (server_id, user_id) VALUES (:id, :member_id)");
+            $stmt = $this->pdo->prepare("INSERT INTO member (server_id, user_id) VALUES (:id, :member_id)");
             $stmt -> bindParam(':id', $this->id);
             $stmt -> bindParam(':member_id', $member_id);
             $stmt -> execute();
         }
         else {
-            return "L'utilisateur eest déjà présent dans le serveur."
+            return "L'utilisateur est déjà présent sur le serveur.";
         }
     }
 
