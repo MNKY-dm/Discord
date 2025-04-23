@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : mer. 09 avr. 2025 à 10:42
+-- Généré le : mer. 23 avr. 2025 à 15:14
 -- Version du serveur : 8.0.40
 -- Version de PHP : 8.3.14
 
@@ -31,7 +31,7 @@ CREATE TABLE `channels` (
   `channel_id` int NOT NULL,
   `channel_name` varchar(250) NOT NULL,
   `server_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -42,7 +42,7 @@ CREATE TABLE `channels` (
 CREATE TABLE `member` (
   `server_id` int NOT NULL,
   `user_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -57,7 +57,7 @@ CREATE TABLE `messages` (
   `message_date` timestamp(6) NOT NULL,
   `sender_id` int NOT NULL,
   `receiver_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -68,8 +68,9 @@ CREATE TABLE `messages` (
 CREATE TABLE `server` (
   `server_id` int NOT NULL,
   `server_name` varchar(250) NOT NULL,
+  `creator_id` int NOT NULL,
   `admin_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -79,10 +80,10 @@ CREATE TABLE `server` (
 
 CREATE TABLE `users` (
   `user_id` int NOT NULL,
-  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `users`
@@ -99,7 +100,11 @@ INSERT INTO `users` (`user_id`, `username`, `email`, `password`) VALUES
 (78, 'region_idf', 'iledefrance@europe.unioneuro', 'jaimeleurope121212'),
 (445, 'LaPireDentitionDeurope', 'dentirion.nulle@miam.com', 'jeSuisLhommeAvecLaPireDentitionDeurope'),
 (798, 'Morgan_Yu', 'morgan.yu@transtar.co', 'FParad0x?'),
-(999, 'BigMan', 'big.man@huge.guy', 'ITSABIGONE');
+(999, 'BigMan', 'big.man@huge.guy', 'ITSABIGONE'),
+(1000, 'ABOUAB', 'abouab@gmail.com', '$2y$10$y/RhsHagLojjtUhGTonXPuxoYLzOC9pIDd1RJD81RlOJiCBGqM.We'),
+(1001, 'abouab2', 'abouab2@gmail.com', '$2y$10$E.QRnUlwLktyZGpWY4sGCO/302iGvABGZUmkDRz6K2QZTLfPjCIi6'),
+(1002, 'abouab3', 'abouab3@gmail.com', '$2y$10$RQLLaYwO0twnO/jtqmlgx.3mJ/LfysGNRT7H5V5ixjiB2XI/MVBNu'),
+(1003, 'abouab4', 'abouab4@gmail.com', '$2y$10$mmal6IRuyKnypNWf1i/qZO42kfoTuz7oqcokBpSwwALk/axCw4GNG');
 
 --
 -- Index pour les tables déchargées
@@ -132,7 +137,8 @@ ALTER TABLE `messages`
 -- Index pour la table `server`
 --
 ALTER TABLE `server`
-  ADD PRIMARY KEY (`server_id`);
+  ADD PRIMARY KEY (`server_id`),
+  ADD KEY `creator_id` (`creator_id`);
 
 --
 -- Index pour la table `users`
@@ -166,7 +172,7 @@ ALTER TABLE `server`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1000;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1004;
 
 --
 -- Contraintes pour les tables déchargées
@@ -192,6 +198,12 @@ ALTER TABLE `messages`
   ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`channel_id`) REFERENCES `channels` (`channel_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `messages_ibfk_3` FOREIGN KEY (`sender_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Contraintes pour la table `server`
+--
+ALTER TABLE `server`
+  ADD CONSTRAINT `server_ibfk_1` FOREIGN KEY (`creator_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
