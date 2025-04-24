@@ -6,9 +6,9 @@ $dbpassword = "root";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbusername, $dbpassword);
-    $conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }catch (PDOException $e){
-    echo "Erreur: " . $e ->getMessage();
+    echo "Erreur: " . $e->getMessage();
 }
 
 ?>
