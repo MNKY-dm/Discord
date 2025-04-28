@@ -2,5 +2,6 @@
     <label for="server_name">
         Nommez votre serveur : 
         <input type="text" name="server_name" id="server_name" placeholder="Nom du serveur">
+        <input type="submit" value="Créer">
     </label>
 </form>
