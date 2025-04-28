@@ -20,17 +20,25 @@ class Server
 
     public function safeQuery(string $sql, array $params = [], bool $single = false) {
         try {
+
+            // Prépare une requête sql
             $stmt = $this->pdo->prepare($sql);
             foreach ($params as $key => $value) {
+                // Pour chaque paramètre passé dans le tableau '$params', la clé est remplacée par la variable voulue
                 $stmt->bindValue($key, $value);
             }
+            // Exécute la requête
             $stmt->execute();
 
+            // S'il s'agit d'une sélection, on récupère le résultat dans un objet (voir configuration du fetch dans 'bdd.php)
             if (stripos($sql, 'SELECT') === 0) {
                 return $single ? $stmt->fetch() : $stmt->fetchAll();
             }
 
+            // Sinon, il return true
             return true;
+
+        // Si une erreur survient, attrape une erreur de PDO et retourne un message d'erreur
         } catch (PDOException $e) {
             error_log("Erreur PDO dans safeQuery : " . $e->getMessage());
             return null;
