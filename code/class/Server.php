@@ -41,10 +41,11 @@ class Server
         // Si une erreur survient, attrape une erreur de PDO et retourne un message d'erreur
         } catch (PDOException $e) {
             error_log("Erreur PDO dans safeQuery : " . $e->getMessage());
-            return null;
+            throw $e;
         }
     }
 
+    // Impossible d'utiliser safeQuery dans cette fonction car elle est statique
     public static function createServer(PDO $pdo, string $server_name, int $creator_id){
 
         try {
@@ -77,7 +78,9 @@ class Server
 
     }
 
+// Impossible d'utiliser safeQuery dans cette fonction car elle est statique
     public static function getServer(PDO $pdo, int $server_id) {
+
         try {
             // Sélectionne le serveur du serveur via une commande SQL, en passant par son ID
             $stmt = $pdo->prepare("SELECT * FROM server WHERE server_id = :server_id");
@@ -118,25 +121,30 @@ class Server
         if (!in_array($member_id, $this->member_list)) {
 
             $this->member_list[] = $member_id;
-            
-            $result = $this->safeQuery(
-                "INSERT INTO member (server_id, user_id) VALUES (:id, :member_id)",
-                [
-                    ':id' => $this->id,
-                    ':member_id' => $member_id
-                ]
-            );
 
-            if ($result) {
+            try {
+                $this->safeQuery(
+                    "INSERT INTO member (server_id, user_id) VALUES (:id, :member_id)",
+                    [
+                        ':id' => $this->id,
+                        ':member_id' => $member_id
+                    ]
+                );
+                
                 return true;
-            } else {
-                return "Impossible d'ajouter l'utilisateur sur le serveur.";
+            }
+            
+            catch (PDOException $e) {
+                if (strpos($e->getMessage(), 'Duplicate entry') !== false) {
+                    return "L'utilisateur est déjà présent dans le server.";
+                }
+
+                error_log("Erreur lors de l'ajout d'un membre: " . $e->getMessage());
+                return "Impossible d'ajouter l'utilisateur dans le serveur : une erreur est survenue.";
             }
 
         } else {
-
             return "L'utilisateur est déjà présent sur le serveur.";
-
         }
     }    
 
