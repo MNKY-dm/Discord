@@ -1,0 +1,49 @@
+/* Définir les polices du site */
+@font-face {
+    font-family: "gg sans Regular";
+    src:
+      url("../fonts/gg-sans-2/gg\ sans\ Regular.ttf") format("truetype");
+  }
+
+@font-face {
+    font-family: "gg sans Medium";
+    src:
+      url("../fonts/gg-sans-2/gg\ sans\ Medium.ttf") format("truetype");
+  }
+
+@font-face {
+    font-family: "gg sans Semibold";
+    src:
+      url("../fonts/gg-sans-2/gg\ sans\ Semibold.ttf") format("truetype");
+  }
+
+@font-face {
+    font-family: "gg sans Bold";
+    src:
+      url("../fonts/gg-sans-2/gg\ sans\ Bold.ttf") format("truetype");
+  }
+
+/* Définir la couleur du texte de la page et la couleur du fond */
+html {
+    color : white;
+    background-color: #282B30;
+}
+
+/* Définir les polices du texte de la page */
+.gg-regular {
+    font-family: "gg sans Regular", "Inter", sans-serif;
+}
+
+.gg-medium {
+    font-family: "gg sans Medium", "Inter", sans-serif;
+}
+
+.gg-semibold {
+    font-family: "gg sans Semibold", "Inter", sans-serif;
+}
+
+.gg-bold {
+    font-family: "gg sans Bold", "Inter", sans-serif;
+}
+
+
