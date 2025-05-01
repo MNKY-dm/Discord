@@ -24,12 +24,8 @@
   }
 
 /* Définir la couleur du texte de la page et la couleur du fond */
-html {
-    color : white;
-    background-color: #282B30;
-}
 
-/* Définir les polices du texte de la page */
+/* ------ Définir les polices du texte de la page ------ */
 .gg-regular {
     font-family: "gg sans Regular", "Inter", sans-serif;
 }
@@ -45,5 +41,50 @@ html {
 .gg-bold {
     font-family: "gg sans Bold", "Inter", sans-serif;
 }
+/* ------------------------------------------------------ */
 
 
+html {
+    color : white;
+    background-color: #282B30;
+}
+
+body {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 5% 20% 75%; /* Permet de modéliser l'aspect 'en colonnes' des différentes zones de la page */
+}
+
+
+
+/* Style de la barre latérale 1 (serveurs - server-bar) */
+
+.server-bar {
+    background-color: #1E2124;
+    padding: 16px 8px;
+}
+
+.server-bar .private-messages, .server-bar .servers {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 16px;
+}
+
+.server-bar img {
+    border-radius: 25%;  /* Affecte les icones des serveurs */
+}
+
+.server-bar .separator {
+    display: flex;
+    justify-content: center;
+    padding: 8px 0;
+}
+
+.server-bar .separator .server-separator {
+    width: 32px;
+    height: 1px;
+    border-radius: 1px;
+    background-color: #646C73;
+}
