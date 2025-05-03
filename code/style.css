@@ -85,14 +85,20 @@ body {
 
 .server-bar .separator .server-separator {
     width: 32px;
-    height: 1px;
-    border-radius: 1px;
+    height: calc(1px - 0.5px);
+    border-radius: calc(1px - 0.5px);
     background-color: #646C73;
 }
 /* ------------------------------------------------------------- */
 
 
 /* ---------------- Style de la barre des amis ---------------- */
+
+.friends-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
 
 /* -------- Barre de recherche -------- */
 input[type=search] {
@@ -120,4 +126,46 @@ input[type=search]::placeholder {
     width: 100%;
 }
 /* ------------------------------------- */
+
+/* ------ Options de la barre d'amis ------ */
+.friends-bar .options {
+    display: flex;
+    flex-direction: column;
+    margin: 0 8px;
+    padding: 8px;
+    gap: 18px;
+}
+
+.friends-bar .options div {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-content: center;
+}
+
+.friends-bar .options img {
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+}
+
+.friends-bar .options a {
+    line-height: 16px;
+    color: #A8A8A8;
+    text-decoration: none;
+}
+
+.friends-bar .separator {
+    display: flex;
+    justify-content: center;
+    padding: 8px 0;
+}
+
+.friends-bar .separator .friends-separator {
+    width: 85%;
+    height: calc(1px - 0.5px);
+    border-radius: calc(1px - 0.5px);
+    background-color: #646C73;
+}
+/* ----------------------------------------- */
 
