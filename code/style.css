@@ -44,16 +44,22 @@
 }
 /* ------------------------------------------------------ */
 
-
-html {
-    color : white;
-    background-color: #282B30;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
+
 body {
-    margin: 0;
+    color : white;
     display: grid;
     grid-template-columns: 5% 25% 70%; /* Permet de modéliser l'aspect 'en colonnes' des différentes zones de la page */
+}
+
+p {
+    margin: 0;
+    display: inline;
 }
 
 .profile-picture {
@@ -100,7 +106,8 @@ body {
 .friends-bar {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 4px;   
+    background-color: #282B30;
 }
 
 /* -------- Barre de recherche -------- */
@@ -109,6 +116,7 @@ input[type=search] {
     background-color: #1E2124;
     border: 0;
     border-radius: 6px;
+    color: white;
 }
 
 .friends-bar .search-bar {
@@ -218,8 +226,34 @@ input[type=search]::placeholder {
     display: inline;
     margin: 0;
     font-size: 0.8em;
+    color: #A8A8A8;
 }
 
 /* ------------------------------------- */
 
 /* ------------------------------------------------------------- */
+
+main {
+    background-color: #36393E;
+    padding-left: 8px;
+}
+
+main .top-bar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    height: 64px;
+    border-bottom: #1E2124 1px solid;
+}
+
+/* Style du pseudo de l'ami courant */
+main .top-bar .friend-username {
+    margin-left: 17px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 60%;
+    font-size: 0.8em;
+}
