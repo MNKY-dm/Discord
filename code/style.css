@@ -26,6 +26,7 @@
 /* Définir la couleur du texte de la page et la couleur du fond */
 
 /* ------ Définir les polices du texte de la page ------ */
+
 .gg-regular {
     font-family: "gg sans Regular", "Inter", sans-serif;
 }
@@ -57,7 +58,7 @@ body {
 
 
 
-/* Style de la barre latérale 1 (serveurs - server-bar) */
+/* --- Style de la barre latérale 1 (serveurs - server-bar) --- */
 
 .server-bar {
     background-color: #1E2124;
@@ -88,3 +89,35 @@ body {
     border-radius: 1px;
     background-color: #646C73;
 }
+/* ------------------------------------------------------------- */
+
+
+/* ---------------- Style de la barre des amis ---------------- */
+
+/* -------- Barre de recherche -------- */
+input[type=search] {
+    background-color: #1E2124;
+    border: 0;
+    border-radius: 6px;
+}
+
+input[type=search]::placeholder {
+    color: white;
+    text-align: center;
+    font-size: 14px;
+}
+
+.friends-bar .search-bar {
+    display: flex;
+    align-items: center;
+    height: 64px;
+    border-bottom: #1E2124 2px solid;
+}
+
+.friends-bar .search-bar input{
+    height: 36px;
+    margin: 8px 10px;
+    width: 100%;
+}
+/* ------------------------------------- */
+
