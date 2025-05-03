@@ -233,10 +233,18 @@ input[type=search]::placeholder {
 
 /* ------------------------------------------------------------- */
 
+/* --------------- Style de la partie principale --------------- */
+
 main {
     background-color: #36393E;
-    padding-left: 8px;
 }
+
+main > div {
+    padding: 0 8px;
+
+}
+
+/* ------------- Style de la top bar ------------- */
 
 main .top-bar {
     display: flex;
@@ -257,3 +265,36 @@ main .top-bar .friend-username {
     width: 60%;
     font-size: 0.8em;
 }
+
+main .top-bar .friend-options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 4px;
+    gap: 10px;
+    font-size: 0.8em;
+}
+
+main .top-bar .friend-options .friend-search-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 8px;
+    border-radius: 8px;
+    background-color: #1E2124;
+}
+
+main .top-bar .friend-options .friend-search-bar input {
+    height: 26px;
+    padding: 8px 8px;
+}
+
+main .top-bar .friend-options .friend-search-bar input::placeholder {
+    text-align: left;
+    color: #94959C;
+    font-size: 0.8em;
+}
+
+/* ----------------------------------------------- */
+
+/* ------------------------------------------------------------- */
