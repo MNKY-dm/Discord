@@ -54,7 +54,7 @@ html, body {
 body {
     color : white;
     display: grid;
-    grid-template-columns: 5% 25% 70%; /* Permet de modéliser l'aspect 'en colonnes' des différentes zones de la page */
+    grid-template-columns: 5% 20% 75%; /* Permet de modéliser l'aspect 'en colonnes' des différentes zones de la page */
 }
 
 p {
@@ -134,8 +134,7 @@ input[type=search] {
 
 input[type=search]::placeholder {
     text-align: center;
-    font-size: 14px;
-    font-size: 14px;
+    font-size: 0.8em;
 }
 
 .friends-bar .search-bar input[type=search]::placeholder {
@@ -296,5 +295,65 @@ main .top-bar .friend-options .friend-search-bar input::placeholder {
 }
 
 /* ----------------------------------------------- */
+
+/* ------------- Style du fill des messages -------------- */
+
+/* ------------- Style des messages -------------- */
+
+/* Séparateur en fonction de la date */
+.message-fill .separator {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2px;
+    padding: 8px;
+    align-items: center;
+}
+
+.message-fill .separator .separator-line {
+    width: 100%;
+    height: calc(1px - 0.5px);
+    border-radius: calc(1px - 0.5px);
+    background-color: #646C73;
+}
+
+.message-fill .separator .separator-date {
+    font-family: "gg sans Regular";
+    color: #94959C;
+    font-size: 0.6em;
+    text-align: center;
+    min-width: 10%;
+}
+/* --------------------------------- */
+
+.message-fill div {
+    margin-bottom: 8px;
+}
+
+.message-fill .self-pseudo, .message-fill .friend-pseudo {
+    margin: 0 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    gap: 12px;
+}
+
+.message-fill .sender-username {
+    font-size: 0.8em;
+}
+
+.message-fill .message-date-hour {
+    font-size: 0.6em;
+    color: #94959C;
+}
+
+.message-fill .message-content {
+    font-size: 0.8em;
+}
+
+/* ----------------------------------------------- */
+
+/* ------------------------------------------------------- */
 
 /* ------------------------------------------------------------- */
