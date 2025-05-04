@@ -354,6 +354,40 @@ main .top-bar .friend-options .friend-search-bar input::placeholder {
 
 /* ----------------------------------------------- */
 
+/* ---------- Style de la barre d'envoi ---------- */
+
+.message-fill .send-message {
+    height: 52px;
+    padding: 0 12px;
+    background-color: #44494E;
+    position: sticky;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    border-radius: 8px;
+    bottom: 0;
+}
+
+.message-fill .send-message input {
+    background-color: #44494E;
+    width: 70%;
+    border: 0;
+}
+
+.message-fill .send-message .message-options {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+
+
+/* ----------------------------------------------- */
+
 /* ------------------------------------------------------- */
 
 /* ------------------------------------------------------------- */
