@@ -1,0 +1,1 @@
+<h2>Serveur créé avec succès !</h2>
