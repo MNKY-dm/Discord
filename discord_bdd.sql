@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : mer. 23 avr. 2025 à 15:14
+-- Généré le : lun. 05 mai 2025 à 13:12
 -- Version du serveur : 8.0.40
 -- Version de PHP : 8.3.14
 
@@ -29,9 +29,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `channels` (
   `channel_id` int NOT NULL,
-  `channel_name` varchar(250) NOT NULL,
+  `channel_name` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `server_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `channel_messages`
+--
+
+CREATE TABLE `channel_messages` (
+  `id_message` int NOT NULL,
+  `sender_id` int NOT NULL,
+  `channel_id` int NOT NULL,
+  `timestamp` timestamp(6) NOT NULL,
+  `message_content` varchar(250) COLLATE utf8mb4_general_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -44,20 +58,37 @@ CREATE TABLE `member` (
   `user_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Déchargement des données de la table `member`
+--
+
+INSERT INTO `member` (`server_id`, `user_id`) VALUES
+(1, 1),
+(2, 1),
+(2, 999),
+(3, 1),
+(3, 999),
+(4, 1),
+(4, 999),
+(5, 1),
+(5, 999),
+(6, 19),
+(1, 19),
+(1, 19);
+
 -- --------------------------------------------------------
 
 --
--- Structure de la table `messages`
+-- Structure de la table `private_messages`
 --
 
-CREATE TABLE `messages` (
+CREATE TABLE `private_messages` (
   `message_id` int NOT NULL,
-  `message_content` varchar(250) NOT NULL,
-  `channel_id` int NOT NULL,
-  `message_date` timestamp(6) NOT NULL,
+  `message_content` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `timestamp` timestamp(6) NOT NULL,
   `sender_id` int NOT NULL,
   `receiver_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -72,6 +103,27 @@ CREATE TABLE `server` (
   `admin_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Déchargement des données de la table `server`
+--
+
+INSERT INTO `server` (`server_id`, `server_name`, `creator_id`, `admin_id`) VALUES
+(1, 'serveur 1', 1, 1),
+(2, 'serveur 1', 1, 1),
+(3, 'serveur 1', 1, 1),
+(4, 'serveur 1', 1, 1),
+(5, 'serveur 1', 1, 1),
+(6, 'serveur 1', 1, 1),
+(7, 'huit', 1, 1),
+(8, 'huit', 1, 1),
+(9, '', 1, 1),
+(10, '', 1, 1),
+(11, '', 1, 1),
+(12, '', 1, 1),
+(13, '', 1, 1),
+(14, 'kiwi', 1, 1),
+(15, 'kiwi', 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -80,9 +132,9 @@ CREATE TABLE `server` (
 
 CREATE TABLE `users` (
   `user_id` int NOT NULL,
-  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -118,6 +170,14 @@ ALTER TABLE `channels`
   ADD KEY `server_id` (`server_id`);
 
 --
+-- Index pour la table `channel_messages`
+--
+ALTER TABLE `channel_messages`
+  ADD PRIMARY KEY (`id_message`),
+  ADD KEY `channel_id` (`channel_id`),
+  ADD KEY `sender_id` (`sender_id`);
+
+--
 -- Index pour la table `member`
 --
 ALTER TABLE `member`
@@ -125,11 +185,10 @@ ALTER TABLE `member`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Index pour la table `messages`
+-- Index pour la table `private_messages`
 --
-ALTER TABLE `messages`
+ALTER TABLE `private_messages`
   ADD PRIMARY KEY (`message_id`),
-  ADD KEY `channel_id` (`channel_id`),
   ADD KEY `receiver_id` (`receiver_id`),
   ADD KEY `sender_id` (`sender_id`);
 
@@ -157,16 +216,22 @@ ALTER TABLE `channels`
   MODIFY `channel_id` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `messages`
+-- AUTO_INCREMENT pour la table `channel_messages`
 --
-ALTER TABLE `messages`
+ALTER TABLE `channel_messages`
+  MODIFY `id_message` int NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `private_messages`
+--
+ALTER TABLE `private_messages`
   MODIFY `message_id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `server`
 --
 ALTER TABLE `server`
-  MODIFY `server_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `server_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT pour la table `users`
@@ -185,6 +250,13 @@ ALTER TABLE `channels`
   ADD CONSTRAINT `channels_ibfk_1` FOREIGN KEY (`server_id`) REFERENCES `server` (`server_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
+-- Contraintes pour la table `channel_messages`
+--
+ALTER TABLE `channel_messages`
+  ADD CONSTRAINT `channel_messages_ibfk_1` FOREIGN KEY (`channel_id`) REFERENCES `channels` (`channel_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `channel_messages_ibfk_2` FOREIGN KEY (`sender_id`) REFERENCES `member` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
 -- Contraintes pour la table `member`
 --
 ALTER TABLE `member`
@@ -192,12 +264,11 @@ ALTER TABLE `member`
   ADD CONSTRAINT `member_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
--- Contraintes pour la table `messages`
+-- Contraintes pour la table `private_messages`
 --
-ALTER TABLE `messages`
-  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`channel_id`) REFERENCES `channels` (`channel_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `messages_ibfk_3` FOREIGN KEY (`sender_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+ALTER TABLE `private_messages`
+  ADD CONSTRAINT `private_messages_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `private_messages_ibfk_3` FOREIGN KEY (`sender_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Contraintes pour la table `server`
