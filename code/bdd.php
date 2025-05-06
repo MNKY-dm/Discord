@@ -5,10 +5,12 @@ $dbusername = "root";
 $dbpassword = "root";
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbusername, $dbpassword);
-    $conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbusername, $dbpassword, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // Permet de définir le mode de traitement des erreurs sur une Exception
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ // Permet de définir le mode de Fetch par défaut de la PDO (fetch renverra un objet)
+    ]);
 }catch (PDOException $e){
-    echo "Erreur: " . $e ->getMessage();
+    echo "Erreur: " . $e->getMessage();
 }
 
 ?>

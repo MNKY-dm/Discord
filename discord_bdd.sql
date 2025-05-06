@@ -88,7 +88,7 @@ CREATE TABLE `private_messages` (
   `timestamp` timestamp(6) NOT NULL,
   `sender_id` int NOT NULL,
   `receiver_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
