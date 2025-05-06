@@ -1,12 +1,7 @@
-<<<<<<< Updated upstream:code/index.html
-<?php ob_start(); ?>
-<main>
-=======
 <?php 
 $title = "Messages privés - Discord";
 ob_start(); ?>
 <main>
->>>>>>> Stashed changes:code/index.php
     <div class="top-bar">
         <div class="friend-username">
             <img src="https://placehold.co/24" alt="friend-avatar" class="profile-picture">
