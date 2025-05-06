@@ -1,6 +1,12 @@
 <?php 
 $title = "Messages privés - Discord";
-ob_start(); ?>
+session_start();
+if (empty($_SESSION["is_logged_in"]) || !$_SESSION["is_logged_in"]) {
+    header("Location: connexion.php");
+    exit();
+}
+ob_start();
+?>
 <main>
     <div class="top-bar">
         <div class="friend-username">

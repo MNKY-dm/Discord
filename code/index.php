@@ -3,7 +3,7 @@ session_start();
 $title = "Accueil - Discord";
 if (empty($_SESSION["is_logged_in"]) || !$_SESSION["is_logged_in"]) {
     header("Location: connexion.php");
-    exit;
+    exit();
 }
 ob_start();
 ?>
@@ -35,7 +35,7 @@ ob_start();
     <!-- Liste des amis -->
     <div class="friends">
         <div class="friend friend-1">
-            <a href="#" class="flex-left">
+            <a href="/code/mp.php" class="flex-left">
                 <img src="https://placehold.co/32" alt="Photo de profil de l'ami n°1" class="profile-picture" height="32px">
                 <p class="friend-display-name gg-semibold" height="32px">Ami 1</p>
             </a>

@@ -1,6 +1,6 @@
 <div class="server-bar">
     <div class="private-messages">
-        <a href="/code/mp.php">
+        <a href="/code/index.php">
             <img src="https://placehold.co/40" alt="Espace privé">
         </a>
     </div>
@@ -14,6 +14,8 @@
         <a href="discord_server/create_server_form.php">
             <img src="https://placehold.co/40" alt="Ajouter un serveur">
         </a>
-        <img src="https://placehold.co/40" alt="Découvrir">
+        <a href="/code/deconnexion.php">
+            <img src="https://placehold.co/40" alt="Se déconnecter">
+        </a>
     </div>
   </div>

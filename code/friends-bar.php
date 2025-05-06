@@ -22,21 +22,21 @@
         <svg xmlns="http://www.w3.org/2000/svg" x="0" y="0" class="plusIcon__675e5 icon__9293f" aria-hidden="true" role="img" width="14" height="14" fill="none" viewBox="0 0 24 24" color="#94959C"><path fill="currentColor" d="M13 5a1 1 0 1 0-2 0v6H5a1 1 0 1 0 0 2h6v6a1 1 0 1 0 2 0v-6h6a1 1 0 1 0 0-2h-6V5Z"></svg>
     </div>
     <div class="friends">
-        <div class="friend friend-1">
+        <a href="/code/mp.php" class="friend friend-1">
             <img src="https://placehold.co/32" alt="Photo de profil de l'ami n°1" class="profile-picture" height="32px">
             <p class="friend-display-name gg-semibold" height="32px">Ami 1</p>
-        </div>
-        <div class="friend friend-2">
+        </a>
+        <a href="/code/mp.php" class="friend friend-2">
             <img src="https://placehold.co/32" alt="Photo de profil de l'ami n°2" class="profile-picture" height="32px">
             <p class="friend-display-name gg-semibold" height="32px">Ami 2</p>
-        </div>
-        <div class="friend friend-3">
+        </a>
+        <a href="/code/mp.php" class="friend friend-3">
             <img src="https://placehold.co/32" alt="Photo de profil de l'ami n°3" class="profile-picture" height="32px">
             <p class="friend-display-name gg-semibold" height="32px">Ami 3</p>
-        </div>
-        <div class="friend friend-4">
+        </a>
+        <a href="/code/mp.php" class="friend friend-4">
             <img src="https://placehold.co/32" alt="Photo de profil de l'ami n°4" class="profile-picture" height="32px">
             <p class="friend-display-name gg-semibold" height="32px">Ami 4</p>
-        </div>
+        </a>
     </div>
   </div>
