@@ -13,14 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $stmt -> execute();
     if ($stmt->rowCount() > 0) {
         $user = $stmt-> fetch(PDO::FETCH_ASSOC);
-
         if (password_verify($password, $user['password'])){
             $_SESSION['username'] = $user['username'];
             echo "<p style='color: green;'>Connexion réussie !</p>";
             header("Location: index.php");
             exit();
         } else{
-            echo "<p style 'color: red;'>Connexion échouée.</p>";
+            echo "<p style='color: red;'>Connexion échouée (mdp).</p>";
         }
 
     }else{
