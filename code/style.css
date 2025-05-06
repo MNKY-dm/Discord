@@ -495,8 +495,12 @@ main .top-bar .friend-options .friend-search-bar input::placeholder {
 
 .message-fill .send-message input {
     background-color: #44494E;
-    width: 70%;
+    width: 80%;
     border: 0;
+}
+
+.message-fill .send-message input::placeholder {
+    text-align: left;
 }
 
 .message-fill .send-message .message-options {
