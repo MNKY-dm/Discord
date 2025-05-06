@@ -40,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <?php include 'navbar.php';?>
     <div class="signup-container">
         <h2>Connexion</h2>
         <form action="connexion.php" method = "POST">
