@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $user = $stmt-> fetch(PDO::FETCH_ASSOC);
         if (password_verify($password, $user['password'])){
             $_SESSION['username'] = $user['username'];
+            $_SESSION['is_logged_in'] = true;
             echo "<p style='color: green;'>Connexion réussie !</p>";
             header("Location: index.php");
             exit();
