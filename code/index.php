@@ -151,5 +151,5 @@ ob_start(); ?>
 
 <?php
 $content = ob_get_clean();
-include("/code/template_private.php");
+include(dirname(__DIR__) . DIRECTORY_SEPARATOR . "code" . DIRECTORY_SEPARATOR . "template_private.php");
 ?>

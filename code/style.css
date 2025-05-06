@@ -62,6 +62,16 @@ p {
     display: inline;
 }
 
+li {
+    list-style: none;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
 .profile-picture {
     border-radius: 50%;
 }
@@ -79,6 +89,11 @@ p {
     flex-wrap: nowrap;
     align-items: center;
     gap: 16px;
+}
+
+.server-bar a {
+    width: 40px;
+    height: 40px;
 }
 
 .server-bar img {
@@ -239,21 +254,19 @@ input::placeholder {
     flex-direction: column;
     gap: 4px;   
     background-color: #282B30;
+    color: #94959C;
 }
 
-/* -------- Barre de recherche -------- */
+/* --------------- Nom du serveur --------------- */
 
-.friends-bar .search-bar {
+.channels-bar .top-bar {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
     height: 64px;
+    color: white;
     border-bottom: #1E2124 1px solid;
-}
-
-.friends-bar .search-bar input{
-    height: 36px;
-    margin: 8px 10px;
-    width: 100%;
 }
 
 input::placeholder {
@@ -261,59 +274,12 @@ input::placeholder {
     font-size: 0.8em;
 }
 
-.friends-bar .search-bar input[type=search]::placeholder {
-    color: white;
-}
+/* ----------------------------------------------- */
 
-/* ------------------------------------- */
+/* ------- Style de la liste des channels -------- */
 
-/* ------ Options de la barre d'amis ------ */
-
-.friends-bar .options {
-    display: flex;
-    flex-direction: column;
-    margin: 0 8px;
-    padding: 8px;
-    gap: 18px;
-}
-
-.friends-bar .options div {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    align-items: center;
-}
-
-.friends-bar .options img {
-    width: 16px;
-    height: 16px;
-}
-
-.friends-bar .options a {
-    font-size: 0.8em;
-    color: #A8A8A8;
-    text-decoration: none;
-}
-
-.friends-bar .separator {
-    display: flex;
-    justify-content: center;
-    padding: 8px;
-}
-
-.friends-bar .separator .friends-separator {
-    width: 100%;
-    height: calc(1px - 0.5px);
-    border-radius: calc(1px - 0.5px);
-    background-color: #646C73;
-}
-
-/* ----------------------------------------- */
-
-/* ------- Style de la liste d'amis -------- */
-
-/* Nom de la catégorie "Messages privés" */
-.friends-bar .category-name {
+/* Nom de la catégorie des channels */
+.channels-bar .category-name {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -323,33 +289,32 @@ input::placeholder {
     height: 20px;
 }
 
-.friends-bar .category-name p {
-    color: #A8A8A8;
-    font-size: 0.7em;
-    display: inline;
-    margin: 0;
-}
 /* ------------------------------------- */
 
-/* ----------- Liste d'amis ------------ */
+/* ----------- Liste des channels ------------ */
 
-.friends-bar .friend {
-    margin: 0 8px;
-    padding: 0 8px;
+.channels-bar .channel-category {
     display: flex;
-    flex-direction: row;
-    gap: 12px;
-    align-items: center;
-    height: 42px;
-    margin-bottom: 2px;
-    border-radius: 10px;
+    flex-direction: column;
+    gap: 8px;
+    margin: 12px 0;
 }
 
-.friends-bar .friend p {
-    display: inline;
+.channels-bar ul {
+    padding: 0 8px;
     margin: 0;
-    font-size: 0.8em;
-    color: #A8A8A8;
+}
+
+.channels-bar li {
+    margin: 4px 0;
+}
+
+.channels-bar .channel-cosmetic {
+    height: 18px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
 }
 
 /* ------------------------------------- */
