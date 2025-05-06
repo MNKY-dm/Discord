@@ -1,5 +1,12 @@
+<<<<<<< Updated upstream:code/index.html
 <?php ob_start(); ?>
 <main>
+=======
+<?php 
+$title = "Messages privés - Discord";
+ob_start(); ?>
+<main>
+>>>>>>> Stashed changes:code/index.php
     <div class="top-bar">
         <div class="friend-username">
             <img src="https://placehold.co/24" alt="friend-avatar" class="profile-picture">
@@ -77,6 +84,7 @@
             </div>
         </div>
         <div class="send-message">
+            <svg xmlns="http://www.w3.org/2000/svg" class="circleIcon__5bc7e" aria-hidden="true" role="img" width="18" height="18" fill="none" viewBox="0 0 24 24" color="#94959C"><circle cx="12" cy="12" r="10" fill="transparent" class=""/><path fill="currentColor" fill-rule="evenodd" d="M12 23a11 11 0 1 0 0-22 11 11 0 0 0 0 22Zm0-17a1 1 0 0 1 1 1v4h4a1 1 0 1 1 0 2h-4v4a1 1 0 1 1-2 0v-4H7a1 1 0 1 1 0-2h4V7a1 1 0 0 1 1-1Z" clip-rule="evenodd" class=""/></svg>            
             <svg xmlns="http://www.w3.org/2000/svg" class="circleIcon__5bc7e" aria-hidden="true" role="img" width="18" height="18" fill="none" viewBox="0 0 24 24" color="#94959C"><circle cx="12" cy="12" r="10" fill="transparent" class=""/><path fill="currentColor" fill-rule="evenodd" d="M12 23a11 11 0 1 0 0-22 11 11 0 0 0 0 22Zm0-17a1 1 0 0 1 1 1v4h4a1 1 0 1 1 0 2h-4v4a1 1 0 1 1-2 0v-4H7a1 1 0 1 1 0-2h4V7a1 1 0 0 1 1-1Z" clip-rule="evenodd" class=""/></svg>            
             <input type="text" name="send_message" id="send_message" placeholder="Envoyer un message à cet ami">
             <div class="message-options">

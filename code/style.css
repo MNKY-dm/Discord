@@ -103,7 +103,7 @@ p {
 
 /* ---------------- Style de la barre des amis ----------------- */
 
-.friends-bar {
+.friends-bar, .channels-bar {
     display: flex;
     flex-direction: column;
     gap: 4px;   
@@ -112,7 +112,7 @@ p {
 
 /* -------- Barre de recherche -------- */
 
-input[type=search] {
+input[type=search], input[type=text] {
     background-color: #1E2124;
     border: 0;
     border-radius: 6px;
@@ -132,7 +132,131 @@ input[type=search] {
     width: 100%;
 }
 
-input[type=search]::placeholder {
+input::placeholder {
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.friends-bar .search-bar input[type=search]::placeholder {
+    color: white;
+}
+
+/* ------------------------------------- */
+
+/* ------ Options de la barre d'amis ------ */
+
+.friends-bar .options {
+    display: flex;
+    flex-direction: column;
+    margin: 0 8px;
+    padding: 8px;
+    gap: 18px;
+}
+
+.friends-bar .options div {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+}
+
+.friends-bar .options img {
+    width: 16px;
+    height: 16px;
+}
+
+.friends-bar .options a {
+    font-size: 0.8em;
+    color: #A8A8A8;
+    text-decoration: none;
+}
+
+.friends-bar .separator {
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+}
+
+.friends-bar .separator .friends-separator {
+    width: 100%;
+    height: calc(1px - 0.5px);
+    border-radius: calc(1px - 0.5px);
+    background-color: #646C73;
+}
+
+/* ----------------------------------------- */
+
+/* ------- Style de la liste d'amis -------- */
+
+/* Nom de la catégorie "Messages privés" */
+.friends-bar .category-name {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    margin: 0 8px;
+    height: 20px;
+}
+
+.friends-bar .category-name p {
+    color: #A8A8A8;
+    font-size: 0.7em;
+    display: inline;
+    margin: 0;
+}
+/* ------------------------------------- */
+
+/* ----------- Liste d'amis ------------ */
+
+.friends-bar .friend {
+    margin: 0 8px;
+    padding: 0 8px;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    height: 42px;
+    margin-bottom: 2px;
+    border-radius: 10px;
+}
+
+.friends-bar .friend p {
+    display: inline;
+    margin: 0;
+    font-size: 0.8em;
+    color: #A8A8A8;
+}
+
+/* ------------------------------------- */
+
+/* ------------------------------------------------------------- */
+
+/* -------------- Style de la barre des channels --------------- */
+
+.channels-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;   
+    background-color: #282B30;
+}
+
+/* -------- Barre de recherche -------- */
+
+.friends-bar .search-bar {
+    display: flex;
+    align-items: center;
+    height: 64px;
+    border-bottom: #1E2124 1px solid;
+}
+
+.friends-bar .search-bar input{
+    height: 36px;
+    margin: 8px 10px;
+    width: 100%;
+}
+
+input::placeholder {
     text-align: center;
     font-size: 0.8em;
 }
@@ -302,7 +426,6 @@ main .top-bar .friend-options .friend-search-bar input::placeholder {
 
 /* Séparateur en fonction de la date */
 .message-fill .separator {
-    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
