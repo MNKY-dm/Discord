@@ -2,7 +2,7 @@
 $servername = "localhost";
 $dbname = "discord_bdd";
 $dbusername = "root";
-$dbpassword = "";
+$dbpassword = "oui";
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbusername, $dbpassword, [
