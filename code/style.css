@@ -50,7 +50,6 @@ html, body {
   padding: 0;
 }
 
-
 body {
     background: #44494E;
     color : white;
@@ -340,9 +339,86 @@ main .top-bar {
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
+    justify-content: space-between;
     height: 64px;
     border-bottom: #1E2124 1px solid;
 }
+
+/* ---------------- Accueil --------------- */
+
+main h2 {
+    padding-left: 8px;
+    text-align: center;
+}
+
+main .box {
+    padding: 24px;
+}
+
+main .main-search-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #1E2124;
+}
+
+main .main-search-bar input {
+    padding-left: 8px;
+}
+
+main .main-search-bar svg {
+    padding-right: 8px;
+}
+
+main .main-search-bar input {
+    width: 100%;
+}
+
+main .main-search-bar input::placeholder {
+    font-size: 1em;
+    text-align: left;
+}
+
+/* Liste d'amis */
+
+main .friends {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+}
+
+main .friend {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .friends a {
+    text-decoration: none;
+    color: #94959C;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+    gap: 8px;
+}
+
+main .friends .flex-left {
+    width: 90%;
+}
+
+/* ------------ */
+
+/* ---------------------------------------- */
+
+/* -------------- Discussion -------------- */
 
 /* Style du pseudo de l'ami courant */
 main .top-bar .friend-username {
@@ -383,6 +459,8 @@ main .top-bar .friend-options .friend-search-bar input::placeholder {
     color: #94959C;
     font-size: 0.8em;
 }
+
+/* ---------------------------------------- */
 
 /* ----------------------------------------------- */
 
