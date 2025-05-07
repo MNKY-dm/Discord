@@ -1,6 +1,6 @@
 <div class="server-bar">
     <div class="private-messages">
-        <a href="/code/index.php">
+        <a href="/Discord/code/index.php">
             <img src="https://placehold.co/40" alt="Espace privé">
         </a>
     </div>
