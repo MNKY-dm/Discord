@@ -1,6 +1,6 @@
 <?php
 require_once('bdd.php');
-$servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(PDO::FETCH_ASSOC);
+$servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(PDO::FETCH_ASSOC); // Permet de récupérer les serveurs de la base de données
 
 ?>
 
@@ -12,7 +12,7 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
     </div>
     <div class="separator"><div class="server-separator"></div></div>
     <div class="servers">
-        <?php foreach ($servers as $server) : ?>
+        <?php foreach ($servers as $server) : ?> <!-- Boucle qui permet d'afficher une image pour chaque serveur existant -->
             <img src="https://placehold.co/40" alt="<?= htmlspecialchars($server["server_name"]) ?> " data-server-id="<?= $server['server_id'] ?>">
         <?php endforeach; ?>
         <script>
