@@ -19,7 +19,6 @@ class Server
 
     public function safeQuery(string $sql, array $params = [], bool $single = false) {
         try {
-
             // Prépare une requête sql
             $stmt = $this->pdo->prepare($sql);
             foreach ($params as $key => $value) {
