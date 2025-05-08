@@ -32,6 +32,9 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
                         })
                         .then(data => { // Ensuite, affiche les données dans la console pour vérifier une fois de plus si ça fonctionne
                             console.log('Données reçues :', data)
+                            JSON.stringify(data)
+                            console.log(data)
+                            sessionStorage.setItem("channels", data)
                         })
 
                         .catch(error => { // Si le fecth ne fonctione pas, attrape une erreur
