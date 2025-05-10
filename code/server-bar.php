@@ -22,19 +22,34 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
 
                     const serverId = event.currentTarget.dataset.serverId // Récupère la valeur de 'data-server-id' en type str grâce à dataset
                     console.log('Serveur cliqué :', serverId) // Affiche le résultat dans la console du navigateur pour vérifier si cela fonctionne
-                    fetch("./discord_server/get_channels.php?server_id=" + serverId)  // Envoie une requête http asynchrone ('fetch()') avec l'id du serveur qui convient depuis le fichier server.php
+                    fetch("./discord_server/get_channels.php?server_id=" + serverId)  // Envoie une requête http asynchrone ('fetch()'), avec l'id du serveur qui convient, depuis le fichier server.php
                         .then(response => { // Dès que la requête reçoit une réponse, les données sont récupérées en format json (pour rendre les données compatibles entre JS et PHP)
                             if (!response.ok) {
                                 console.log(response)
-                                throw new Error('HTTP error ' + response.status);
+                                throw new Error('HTTP error ' + response.status)
                             }
-                            return response.json();
+                            return response.json()
                         })
                         .then(data => { // Ensuite, affiche les données dans la console pour vérifier une fois de plus si ça fonctionne
                             console.log('Données reçues :', data)
-                            const json = JSON.stringify(data)
-                            console.log(json)
-                            sessionStorage.setItem("channels", json)
+                            console.log('Données en string :', JSON.stringify(data))
+                            try {
+                                fetch("save_channels.php", {
+                                    method : 'POST',
+                                    headers : {'Content-Type': 'application/json'},
+                                    body : JSON.stringify(data)
+                                }) 
+                                    .then(response => {
+                                        console.log(response);
+                                        console.log('la reponse est : ' + response.ok)
+                                        console.log('le status est : ' + response.status)
+                                        console.log('le statusText est : ' + response.statusText)
+                                        console.log('le Text est : ' + response.responseText)
+                                    })
+                                
+                            } catch(error) {
+                                console.log(error)
+                            }
                         })
 
                         .catch(error => { // Si le fetch ne fonctione pas, attrape une erreur
