@@ -32,7 +32,7 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
                         })
                         .then(data => { // Ensuite, affiche les données dans la console pour vérifier une fois de plus si ça fonctionne
                             console.log('Données reçues :', data)
-                            console.log('Données en string :', JSON.stringify(data))
+                            console.log('Données en string :', JSON.stringify({data}))
                             try {
                                 fetch("save_channels.php", {
                                     method : 'POST',
@@ -40,15 +40,13 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
                                     body : JSON.stringify(data)
                                 }) 
                                     .then(response => {
-                                        console.log(response);
-                                        console.log('la reponse est : ' + response.ok)
-                                        console.log('le status est : ' + response.status)
-                                        console.log('le statusText est : ' + response.statusText)
-                                        console.log('le Text est : ' + response.responseText)
+                                        console.log('Réponse : ', response);
+                                        console.log('Réponse OK ? : ' + response.ok)
+                                        console.log('Le status est : ' + response.status)
+                                        console.log('Le statusText est : ' + response.statusText)
                                     })
-                                
                             } catch(error) {
-                                console.log(error)
+                                console.log('Erreur : ', error)
                             }
                         })
 
