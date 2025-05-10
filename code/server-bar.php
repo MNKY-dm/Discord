@@ -12,12 +12,18 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
     </div>
     <div class="separator"><div class="server-separator"></div></div>
     <div class="servers">
-        <a href="channel-fill.php">
-            <?php foreach ($servers as $server) : ?> <!-- Boucle qui permet d'afficher une image pour chaque serveur existant -->
-                <img src="https://placehold.co/40" alt="<?= htmlspecialchars($server["server_name"]) ?> " data-server-id="<?= $server['server_id'] ?>">
-            <?php endforeach; ?>
-        </a>
+        <?php foreach ($servers as $server) : ?>
+            <a href="channel-fill.php" class="server-link" data-server-id="<?= $server['server_id'] ?>">
+                <img src="https://placehold.co/40" alt="<?= htmlspecialchars($server["server_name"]) ?>">
+            </a>
+        <?php endforeach; ?>
         <script>
+            document.querySelectorAll('#linkChannel').forEach(a => {
+                a.addEventListener('click', (even) => {
+                    event.preventDefault()
+                })
+            })
+
             document.querySelectorAll("[data-server-id]").forEach(img => { // Sélectionne les éléments qui ont l'attribut 'data-server-id'
 
                 img.addEventListener('click', (event) => { // Pour chaque img trouvée, ajoute un événement "click"
