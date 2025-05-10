@@ -12,9 +12,11 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
     </div>
     <div class="separator"><div class="server-separator"></div></div>
     <div class="servers">
-        <?php foreach ($servers as $server) : ?> <!-- Boucle qui permet d'afficher une image pour chaque serveur existant -->
-            <img src="https://placehold.co/40" alt="<?= htmlspecialchars($server["server_name"]) ?> " data-server-id="<?= $server['server_id'] ?>">
-        <?php endforeach; ?>
+        <a href="channel-fill.php">
+            <?php foreach ($servers as $server) : ?> <!-- Boucle qui permet d'afficher une image pour chaque serveur existant -->
+                <img src="https://placehold.co/40" alt="<?= htmlspecialchars($server["server_name"]) ?> " data-server-id="<?= $server['server_id'] ?>">
+            <?php endforeach; ?>
+        </a>
         <script>
             document.querySelectorAll("[data-server-id]").forEach(img => { // Sélectionne les éléments qui ont l'attribut 'data-server-id'
 
