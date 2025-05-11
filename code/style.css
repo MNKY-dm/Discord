@@ -50,7 +50,7 @@ html, body {
   padding: 0;
 }
 
-body {
+div.layout {
     background: #44494E;
     color : white;
     display: grid;

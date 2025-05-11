@@ -15,15 +15,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $user = $stmt-> fetch(PDO::FETCH_ASSOC);
         if (password_verify($password, $user['password'])){
             $_SESSION['username'] = $user['username'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['is_logged_in'] = true;
             echo "<p style='color: green;'>Connexion réussie !</p>";
-            header("Location: index.php");
+            header("Location: main.php");
             exit();
         } else{
             echo "<p style='color: red;'>Connexion échouée (mdp).</p>";
         }
 
-    }else{
+    } else{
         echo "<p style='color: red;'>Connexion échouée.</p>";
     }
 

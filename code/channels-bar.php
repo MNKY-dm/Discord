@@ -1,9 +1,6 @@
 <?php
-session_start();
 $channels = $_SESSION['channels'];
-echo '<pre>';
-var_dump($channels);
-echo '</pre>';
+
 ?>
 
 <div class="channels-bar">

@@ -6,23 +6,18 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
 
 <div class="server-bar">
     <div class="private-messages">
-        <a href="/Discord/code/index.php">
+        <a href="/Discord/code/main.php?page=mp">
             <img src="https://placehold.co/40" alt="Espace privé">
         </a>
     </div>
     <div class="separator"><div class="server-separator"></div></div>
     <div class="servers">
         <?php foreach ($servers as $server) : ?>
-            <a href="channel-fill.php" class="server-link" data-server-id="<?= $server['server_id'] ?>">
+            <a href="main.php?page=channel" class="server-link" data-server-id="<?= $server['server_id'] ?>">
                 <img src="https://placehold.co/40" alt="<?= htmlspecialchars($server["server_name"]) ?>">
             </a>
         <?php endforeach; ?>
         <script>
-            document.querySelectorAll('#linkChannel').forEach(a => {
-                a.addEventListener('click', (even) => {
-                    event.preventDefault()
-                })
-            })
 
             document.querySelectorAll("[data-server-id]").forEach(img => { // Sélectionne les éléments qui ont l'attribut 'data-server-id'
 
@@ -61,6 +56,7 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
                         .catch(error => { // Si le fetch ne fonctione pas, attrape une erreur
                             console.error('Erreur AJAX :', error)
                         })
+                    window.location.href = "main.php?page=channel&server_id=" + serverId;
                 })
             })
         </script>

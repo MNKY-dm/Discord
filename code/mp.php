@@ -1,13 +1,6 @@
 <?php 
 $title = "Messages privés - Discord";
-session_start();
-if (empty($_SESSION["is_logged_in"]) || !$_SESSION["is_logged_in"]) {
-    header("Location: connexion.php");
-    exit();
-}
-ob_start();
 ?>
-<main>
     <div class="top-bar">
         <div class="friend-username">
             <img src="https://placehold.co/24" alt="friend-avatar" class="profile-picture">
@@ -153,9 +146,4 @@ ob_start();
             <p class="gg-regular">Voir le profil complet</p>
         </div>
     </div>
-</main>
 
-<?php
-$content = ob_get_clean();
-include(dirname(__DIR__) . DIRECTORY_SEPARATOR . "code" . DIRECTORY_SEPARATOR . "template_private.php");
-?>
