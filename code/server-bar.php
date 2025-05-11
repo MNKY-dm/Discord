@@ -1,18 +1,19 @@
 <?php
 require_once('bdd.php');
 $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(PDO::FETCH_ASSOC); // Permet de récupérer les serveurs de la base de données
+
 ?>
 
 <div class="server-bar">
     <div class="private-messages">
-        <a href="/Discord/code/main.php?page=mp">
+        <a href="/Discord/code/index.php">
             <img src="https://placehold.co/40" alt="Espace privé">
         </a>
     </div>
     <div class="separator"><div class="server-separator"></div></div>
     <div class="servers">
         <?php foreach ($servers as $server) : ?>
-            <a href="main.php?server_name=<?=$server['server_name'];?>&page=channel" class="server-link" data-server-id="<?= $server['server_id'] ?>">
+            <a href="channel-fill.php" class="server-link" data-server-id="<?= $server['server_id'] ?>">
                 <img src="https://placehold.co/40" alt="<?= htmlspecialchars($server["server_name"]) ?>">
             </a>
         <?php endforeach; ?>
@@ -38,25 +39,18 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
                                     method : 'POST',
                                     headers : {'Content-Type': 'application/json'},
                                     body : JSON.stringify(data)
-                                }) 
-                                    // .then(response => {
-                                    //     console.log('Réponse : ', response);
-                                    //     console.log('Réponse OK ? : ' + response.ok)
-                                    //     console.log('Le status est : ' + response.status)
-                                    //     console.log('Le statusText est : ' + response.statusText)
-                                    // })  OBSOLETE CAR REDIRECTION
+                            })
                             } catch(error) {
                                 console.log('Erreur : ', error)
-                                window.location.href = "main.php";
+                                window.location.href = "main.php"
                             }
                         })
 
                         .catch(error => { // Si le fetch ne fonctione pas, attrape une erreur
-                            console.error('Erreur AJAX :', error)
-                        })
-                    window.location.href = "main.php?page=channel&server_id=" + serverId;
-                })
-            })
+                        console.error('Erreur AJAX :', error)
+                    });
+                });
+            });
         </script>
         <a href="/Discord/code/discord_server/create_server_form.php">
             <img src="https://placehold.co/40" alt="Ajouter un serveur">
