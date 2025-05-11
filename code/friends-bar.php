@@ -26,7 +26,7 @@
             <img src="https://placehold.co/32" alt="Photo de profil de l'ami n°1" class="profile-picture" height="32px">
             <p class="friend-display-name gg-semibold" height="32px">Ami 1</p>
         </a>
-        <a href="/Discord/code/mp.php" class="friend friend-2">
+        <a href="/Discord/code/main.php?page=mp" class="friend friend-2">
             <img src="https://placehold.co/32" alt="Photo de profil de l'ami n°2" class="profile-picture" height="32px">
             <p class="friend-display-name gg-semibold" height="32px">Ami 2</p>
         </a>
