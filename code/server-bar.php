@@ -1,7 +1,6 @@
 <?php
 require_once('bdd.php');
 $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(PDO::FETCH_ASSOC); // Permet de récupérer les serveurs de la base de données
-
 ?>
 
 <div class="server-bar">
@@ -13,7 +12,7 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
     <div class="separator"><div class="server-separator"></div></div>
     <div class="servers">
         <?php foreach ($servers as $server) : ?>
-            <a href="main.php?page=channel" class="server-link" data-server-id="<?= $server['server_id'] ?>">
+            <a href="main.php?server_name=<?=$server['server_name'];?>&page=channel" class="server-link" data-server-id="<?= $server['server_id'] ?>">
                 <img src="https://placehold.co/40" alt="<?= htmlspecialchars($server["server_name"]) ?>">
             </a>
         <?php endforeach; ?>
@@ -34,22 +33,21 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
                             return response.json()
                         })
                         .then(data => { // Ensuite, affiche les données dans la console pour vérifier une fois de plus si ça fonctionne
-                            console.log('Données reçues :', data)
-                            console.log('Données en string :', JSON.stringify({data}))
                             try {
                                 fetch("save_channels.php", {
                                     method : 'POST',
                                     headers : {'Content-Type': 'application/json'},
                                     body : JSON.stringify(data)
                                 }) 
-                                    .then(response => {
-                                        console.log('Réponse : ', response);
-                                        console.log('Réponse OK ? : ' + response.ok)
-                                        console.log('Le status est : ' + response.status)
-                                        console.log('Le statusText est : ' + response.statusText)
-                                    })
+                                    // .then(response => {
+                                    //     console.log('Réponse : ', response);
+                                    //     console.log('Réponse OK ? : ' + response.ok)
+                                    //     console.log('Le status est : ' + response.status)
+                                    //     console.log('Le statusText est : ' + response.statusText)
+                                    // })  OBSOLETE CAR REDIRECTION
                             } catch(error) {
                                 console.log('Erreur : ', error)
+                                window.location.href = "main.php";
                             }
                         })
 
