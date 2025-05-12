@@ -4,17 +4,29 @@
   <meta charset="UTF-8">
   <title>Connexion - Mon Discord</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<<<<<<< HEAD
   <link href="custom.css" rel="stylesheet"> <!-- Ton thème personnalisé -->
+=======
+  <link href="custom.css" rel="stylesheet"> <!-- Thème personnalisé -->
+>>>>>>> 8998d23 (login.php custom.css)
 </head>
 <body class="d-flex align-items-center justify-content-center vh-100 bg-dark text-light">
 
   <div class="card p-4 shadow-lg" style="width: 100%; max-width: 400px; background-color: #2c2f33;">
     <h2 class="text-center mb-4" style="color: #fff;">Connexion</h2>
+<<<<<<< HEAD
     
     <form method="POST" action="login.php">
       <div class="mb-3">
         <label for="email" class="form-label">Adresse email</label>
         <input type="email" class="form-control" id="email" name="email" placeholder="exemple@domaine.com" required>
+=======
+
+    <form method="POST" action="traitement_login.php">
+      <div class="mb-3">
+        <label for="email" class="form-label">Adresse email</label>
+        <input type="email" class="form-control" id="email" name="email" required placeholder="exemple@domaine.com">
+>>>>>>> 8998d23 (login.php custom.css)
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Mot de passe</label>
