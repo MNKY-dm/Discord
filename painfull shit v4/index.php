@@ -27,11 +27,24 @@
         document.getElementById('msgForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const msg = document.getElementById('message').value;
-            await fetch('send.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: `message=${encodeURIComponent(msg)}`
-            });
+            try {
+                await fetch('send.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `message=${encodeURIComponent(msg)}`
+                })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Fetch OK')
+                    }
+                    else {
+                        throw new Error('AJAX error ' + response.status)
+                    }
+                })
+            }
+            catch (error) {
+                console.log('Erreur AJAX :', error)
+            }
             document.getElementById('message').value = '';
             loadMessages();
         });
