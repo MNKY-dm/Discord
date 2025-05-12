@@ -1,0 +1,564 @@
+/* Définir les polices du site */
+@font-face {
+    font-family: "gg sans Regular";
+    src:
+      url("../fonts/gg-sans-2/gg\ sans\ Regular.ttf") format("truetype");
+  }
+
+@font-face {
+    font-family: "gg sans Medium";
+    src:
+      url("../fonts/gg-sans-2/gg\ sans\ Medium.ttf") format("truetype");
+  }
+
+@font-face {
+    font-family: "gg sans Semibold";
+    src:
+      url("../fonts/gg-sans-2/gg\ sans\ Semibold.ttf") format("truetype");
+  }
+
+@font-face {
+    font-family: "gg sans Bold";
+    src:
+      url("../fonts/gg-sans-2/gg\ sans\ Bold.ttf") format("truetype");
+  }
+
+/* Définir la couleur du texte de la page et la couleur du fond */
+
+/* ------ Définir les polices du texte de la page ------ */
+
+.gg-regular {
+    font-family: "gg sans Regular", "Inter", sans-serif;
+}
+
+.gg-medium {
+    font-family: "gg sans Medium", "Inter", sans-serif;
+}
+
+.gg-semibold {
+    font-family: "gg sans Semibold", "Inter", sans-serif;
+}
+
+.gg-bold {
+    font-family: "gg sans Bold", "Inter", sans-serif;
+}
+/* ------------------------------------------------------ */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+div.layout {
+    background: #44494E;
+    color : white;
+    display: grid;
+    grid-template-columns: 5% 20% 75%; /* Permet de modéliser l'aspect 'en colonnes' des différentes zones de la page */
+}
+
+p {
+    margin: 0;
+    display: inline;
+}
+
+li {
+    list-style: none;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.profile-picture {
+    border-radius: 50%;
+}
+
+/* --- Style de la barre latérale 1 (serveurs - server-bar) --- */
+
+.server-bar {
+    background-color: #1E2124;
+    padding: 16px 8px;
+}
+
+.server-bar .private-messages, .server-bar .servers {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 16px;
+}
+
+.server-bar a {
+    width: 40px;
+    height: 40px;
+}
+
+.server-bar img {
+    border-radius: 25%;  /* Affecte les icones des serveurs */
+}
+
+.server-bar .separator {
+    display: flex;
+    justify-content: center;
+    padding: 8px 0;
+}
+
+.server-bar .separator .server-separator {
+    width: 32px;
+    height: calc(1px - 0.5px);
+    border-radius: calc(1px - 0.5px);
+    background-color: #646C73;
+}
+
+/* ------------------------------------------------------------- */
+
+
+/* ---------------- Style de la barre des amis ----------------- */
+
+.friends-bar, .channels-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;   
+    background-color: #282B30;
+}
+
+/* -------- Barre de recherche -------- */
+
+input[type=search], input[type=text] {
+    background-color: #1E2124;
+    border: 0;
+    border-radius: 6px;
+    color: white;
+}
+
+.friends-bar .search-bar {
+    display: flex;
+    align-items: center;
+    height: 64px;
+    border-bottom: #1E2124 1px solid;
+}
+
+.friends-bar .search-bar input{
+    height: 36px;
+    margin: 8px 10px;
+    width: 100%;
+}
+
+input::placeholder {
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.friends-bar .search-bar input[type=search]::placeholder {
+    color: white;
+}
+
+/* ------------------------------------- */
+
+/* ------ Options de la barre d'amis ------ */
+
+.friends-bar .options {
+    display: flex;
+    flex-direction: column;
+    margin: 0 8px;
+    padding: 8px;
+    gap: 18px;
+}
+
+.friends-bar .options div {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+}
+
+.friends-bar .options img {
+    width: 16px;
+    height: 16px;
+}
+
+.friends-bar .options a {
+    font-size: 0.8em;
+    color: #A8A8A8;
+    text-decoration: none;
+}
+
+.friends-bar .separator {
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+}
+
+.friends-bar .separator .friends-separator {
+    width: 100%;
+    height: calc(1px - 0.5px);
+    border-radius: calc(1px - 0.5px);
+    background-color: #646C73;
+}
+
+/* ----------------------------------------- */
+
+/* ------- Style de la liste d'amis -------- */
+
+/* Nom de la catégorie "Messages privés" */
+.friends-bar .category-name {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    margin: 0 8px;
+    height: 20px;
+}
+
+.friends-bar .category-name p {
+    color: #A8A8A8;
+    font-size: 0.7em;
+    display: inline;
+    margin: 0;
+}
+/* ------------------------------------- */
+
+/* ----------- Liste d'amis ------------ */
+
+.friends-bar .friend {
+    margin: 0 8px;
+    padding: 0 8px;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    height: 42px;
+    margin-bottom: 2px;
+    border-radius: 10px;
+}
+
+.friends-bar .friend p {
+    display: inline;
+    margin: 0;
+    font-size: 0.8em;
+    color: #A8A8A8;
+}
+
+/* ------------------------------------- */
+
+/* ------------------------------------------------------------- */
+
+/* -------------- Style de la barre des channels --------------- */
+
+.channels-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;   
+    background-color: #282B30;
+    color: #94959C;
+}
+
+/* --------------- Nom du serveur --------------- */
+
+.channels-bar .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    height: 64px;
+    color: white;
+    border-bottom: #1E2124 1px solid;
+}
+
+input::placeholder {
+    text-align: center;
+    font-size: 0.8em;
+}
+
+/* ----------------------------------------------- */
+
+/* ------- Style de la liste des channels -------- */
+
+/* Nom de la catégorie des channels */
+.channels-bar .category-name {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    margin: 0 8px;
+    height: 20px;
+}
+
+/* ------------------------------------- */
+
+/* ----------- Liste des channels ------------ */
+
+.channels-bar .channel-category {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 12px 0;
+}
+
+.channels-bar ul {
+    padding: 0 8px;
+    margin: 0;
+}
+
+.channels-bar li {
+    margin: 4px 0;
+}
+
+.channels-bar .channel-cosmetic {
+    height: 18px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ------------------------------------- */
+
+/* ------------------------------------------------------------- */
+
+/* --------------- Style de la partie principale --------------- */
+
+main {
+    background-color: #36393E;
+}
+
+main > div {
+    padding: 0 8px;
+
+}
+
+/* ------------- Style de la top bar ------------- */
+
+main .top-bar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    border-bottom: #1E2124 1px solid;
+}
+
+/* ---------------- Accueil --------------- */
+
+main h2 {
+    padding-left: 8px;
+    text-align: center;
+}
+
+main .box {
+    padding: 24px;
+}
+
+main .main-search-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    background-color: #1E2124;
+}
+
+main .main-search-bar input {
+    padding-left: 8px;
+}
+
+main .main-search-bar svg {
+    padding-right: 8px;
+}
+
+main .main-search-bar input {
+    width: 100%;
+}
+
+main .main-search-bar input::placeholder {
+    font-size: 1em;
+    text-align: left;
+}
+
+/* Liste d'amis */
+
+main .friends {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+}
+
+main .friend {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main .friends a {
+    text-decoration: none;
+    color: #94959C;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px;
+    gap: 8px;
+}
+
+main .friends .flex-left {
+    width: 90%;
+}
+
+/* ------------ */
+
+/* ---------------------------------------- */
+
+/* -------------- Discussion -------------- */
+
+/* Style du pseudo de l'ami courant */
+main .top-bar .friend-username {
+    margin-left: 17px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 60%;
+    font-size: 0.8em;
+}
+
+main .top-bar .friend-options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 4px;
+    gap: 10px;
+    font-size: 0.8em;
+}
+
+main .top-bar .friend-options .friend-search-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 8px;
+    border-radius: 8px;
+    background-color: #1E2124;
+}
+
+main .top-bar .friend-options .friend-search-bar input {
+    height: 26px;
+    padding: 8px 8px;
+}
+
+main .top-bar .friend-options .friend-search-bar input::placeholder {
+    text-align: left;
+    color: #94959C;
+    font-size: 0.8em;
+}
+
+/* ---------------------------------------- */
+
+/* ----------------------------------------------- */
+
+/* ------------- Style du fill des messages -------------- */
+
+/* ------------- Style des messages -------------- */
+
+/* Séparateur en fonction de la date */
+.message-fill .separator {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 2px;
+    padding: 8px;
+    align-items: center;
+}
+
+.message-fill .separator .separator-line {
+    width: 100%;
+    height: calc(1px - 0.5px);
+    border-radius: calc(1px - 0.5px);
+    background-color: #646C73;
+}
+
+.message-fill .separator .separator-date {
+    font-family: "gg sans Regular";
+    color: #94959C;
+    font-size: 0.6em;
+    text-align: center;
+    min-width: 10%;
+}
+/* --------------------------------- */
+
+.message-fill div {
+    margin-bottom: 8px;
+}
+
+.message-fill .self-pseudo, .message-fill .friend-pseudo {
+    margin: 0 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    gap: 12px;
+}
+
+.message-fill .sender-username {
+    font-size: 0.8em;
+}
+
+.message-fill .message-date-hour {
+    font-size: 0.6em;
+    color: #94959C;
+}
+
+.message-fill .message-content {
+    font-size: 0.8em;
+}
+
+/* ----------------------------------------------- */
+
+/* ---------- Style de la barre d'envoi ---------- */
+
+.message-fill .send-message {
+    height: 52px;
+    padding: 0 12px;
+    background-color: #44494E;
+    position: sticky;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    border-radius: 8px;
+    bottom: 0;
+}
+
+.message-fill .send-message input {
+    background-color: #44494E;
+    width: 80%;
+    border: 0;
+}
+
+.message-fill .send-message input::placeholder {
+    text-align: left;
+}
+
+.message-fill .send-message .message-options {
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+
+
+/* ----------------------------------------------- */
+
+/* ------------------------------------------------------- */
+
+/* ------------------------------------------------------------- */

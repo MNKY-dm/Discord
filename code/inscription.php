@@ -22,7 +22,7 @@
             <label for="confirm-password">Confirmer le mot de passe :</label>
             <input type="password" id="confirm-password" name="confirm-password" required>
 
-            <p><input type="checkbox" id="check">J'accepte les <a href="conditions.html">JConditions d'utilisation</a></p>
+            <p><input type="checkbox" id="check">J'accepte les <a href="conditions.html">Conditions d'utilisation</a></p>
 
             <input type="submit" value="S'inscrire">
         </form>
@@ -56,34 +56,27 @@
 
         include "bdd.php";
 
-        try {
-            $conn = new PDO ("mysql:host=$servername;dbname=$dbname", $dbusername, $dbpassword);
-            $conn ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt -> bindParam(':email' , $email);
+        $stmt -> execute();
 
-            $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
-            $stmt -> bindParam(':email' , $email);
-            $stmt -> execute();
+        if($stmt->rowCount() > 0){
+            echo "<p style='color: red;'>Un compte avec cet email existe déjà.</p>";
+        }else{
+            $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
+            $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
+            $stmt->bindParam(':username', $username);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':password', $hashedPassword);
 
-            if($stmt->rowCount() > 0){
-                echo "<p style='color: red;'>Un compte avec cet email existe déjà.</p>";
+            if($stmt->execute()){
+                header("Location: connexion.php");
+                exit();
             }else{
-                $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
-                $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
-                $stmt->bindParam(':username', $username);
-                $stmt->bindParam(':email', $email);
-                $stmt->bindParam(':password', $hashedPassword);
-
-                if($stmt->execute()){
-                    header("Location: connexion.php");
-                    exit();
-                }else{
-                    echo "<p style='color: red;'>Une erreur est survenue.</p>";
-                }
+                echo "<p style='color: red;'>Une erreur est survenue.</p>";
             }
-
-        } catch (PDOException $e){
-            echo "Erreur : " . $e->getMessage();
         }
+
         $conn = null;
     }
     ?>

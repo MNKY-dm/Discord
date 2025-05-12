@@ -6,39 +6,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $email = htmlspecialchars(trim($_POST['email']));
     $password = htmlspecialchars(trim($_POST['password']));
 
-    include 'bdd.php';
+    require_once 'bdd.php';
 
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $dbusername, $dbpassword);
-        $conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $stmt = $conn -> prepare("SELECT * FROM users WHERE email = :email");
-        $stmt -> bindParam(':email', $email);
-        $stmt -> execute();
-        if ($stmt->rowCount() > 0) {
-            $user = $stmt-> fetch(PDO::FETCH_ASSOC);
-
-            if (password_verify($password, $user['password'])){
-                $_SESSION['username'] = $user['username'];
-                echo "<p style='color: green;'>Connexion réussie !</p>";
-                header("Location: index.php");
-                exit();
-            } else{
-                echo "<p style 'color: red;'>Connexion échouée.</p>";
-            }
-
-        }else{
-            echo "<p style='color: red;'>Connexion échouée.</p>";
+    $stmt = $conn -> prepare("SELECT * FROM users WHERE email = :email");
+    $stmt -> bindParam(':email', $email);
+    $stmt -> execute();
+    if ($stmt->rowCount() > 0) {
+        $user = $stmt-> fetch(PDO::FETCH_ASSOC);
+        if (password_verify($password, $user['password'])){
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['is_logged_in'] = true;
+            echo "<p style='color: green;'>Connexion réussie !</p>";
+            header("Location: main.php");
+            exit();
+        } else{
+            echo "<p style='color: red;'>Connexion échouée (mdp).</p>";
         }
-    }catch (PDOException $e){
-        echo "Erreur: " . $e ->getMessage();
+
+    } else{
+        echo "<p style='color: red;'>Connexion échouée.</p>";
     }
+
     $conn = null;
     }
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang=fr>
@@ -49,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <?php include 'navbar.php';?>
     <div class="signup-container">
         <h2>Connexion</h2>
         <form action="connexion.php" method = "POST">

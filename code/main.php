@@ -1,0 +1,38 @@
+<?php
+session_start();
+
+
+// Vérification de la connexion
+if (!isset($_SESSION['user_id'])) {
+    header('Location: connexion.php');
+    exit();
+}
+$page = $_GET['page'] ?? 'home'; // Passer en get la page où on se situe : home, mp ou channel
+$server_id = $_GET['server_id'] ?? null;
+$mp_id = $_GET['mp_id'] ?? null;
+?>
+<div class="layout">
+    <?php include 'header.php'; ?>
+    <?php include 'server-bar.php'; ?>
+    <?php
+    // Affichage dynamique de la barre latérale
+    if ($page === 'home' || $page === 'mp') {
+        include 'friends-bar.php';
+    } elseif ($page === 'channel') {
+        // Récupère les channels du serveur, par exemple via $_SESSION ou une requête
+        include 'channels-bar.php';
+    }
+    ?>
+    <main>
+        <?php
+        // Affichage du contenu central
+        if ($page === 'home') {
+            include 'accueil.php';
+        } elseif ($page === 'mp') {
+            include 'mp.php';
+        } elseif ($page === 'channel') {
+            include 'channel-fill.php';
+        }
+        ?>
+    </main>
+</div>
