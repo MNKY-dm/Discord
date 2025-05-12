@@ -1,5 +1,9 @@
 <?php
-$channels = $_SESSION['channels'];
+if (isset($_SESSION['channels'])) {
+    $channels = $_SESSION['channels'];
+} else {
+    $_SESSION['channels'] = [];
+}
 ?>
 
 <div class="channels-bar">
