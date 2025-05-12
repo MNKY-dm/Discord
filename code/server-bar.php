@@ -1,7 +1,6 @@
 <?php
 require_once('bdd.php');
 $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(PDO::FETCH_ASSOC); // Permet de récupérer les serveurs de la base de données
-
 ?>
 
 <div class="server-bar">
