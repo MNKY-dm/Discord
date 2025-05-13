@@ -26,7 +26,7 @@
     </form>
 
     <div class="text-center mt-3">
-      <a href="register.php" class="text-light">Créer un compte</a>
+      <a href="_register.php" class="text-light">Créer un compte</a>
     </div>
   </div>
 </body>
