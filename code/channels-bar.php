@@ -1,4 +1,5 @@
 <?php
+session_start();
 if (isset($_SESSION['channels'])) {
     $channels = $_SESSION['channels'];
 } else {

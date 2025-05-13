@@ -16,23 +16,15 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
         <?php endforeach; ?>
         <script>
 
-            function changeMainContent(url) {
+            function changeContent(url, htmlClass) {
                 fetch(url).then(response => {
                         response = response.text()
                         return response
                     }) .then(result => {
-                        document.getElementsByClassName("content")[0].innerHTML = result
+                        document.getElementsByClassName(htmlClass)[0].innerHTML = result
                     })
             }
 
-            function changeSideContent(url) {
-                fetch(url).then(reponse => {
-                    response = response.text()
-                    return response
-                }) .then(result => {
-                    document.getElementsByClassName("content")[0].innerHTML = result
-                })
-            }
 
             document.querySelectorAll("[data-server-id]").forEach(img => { // Sélectionne les éléments qui ont l'attribut 'data-server-id'
 
@@ -71,7 +63,8 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
                             console.error('Erreur AJAX :', error)
                         })
                     // window.location.href = "main.php?page=channel&server_id=" + serverId;
-                    changeMainContent("/code/channel-fill.php")
+                    changeContent("/code/channel-fill.php", "content")
+                    changeContent("/code/channels-bar.php", "side-content")
                 })
             })
         </script>
