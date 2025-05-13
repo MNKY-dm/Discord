@@ -1,37 +1,36 @@
 :root {
-    --bs-body-bg: #1e1f22;
-    --bs-body-color: #ffffff;
-    --bs-primary: #5865F2;
-    --bs-secondary: #2C2F33;
-    --bs-border-color: #40444b;
-  }
-  
-  body {
-    background-color: var(--bs-body-bg);
-    color: var(--bs-body-color);
-  }
-  
-  .card {
-    background-color: var(--bs-secondary);
-    border: 1px solid var(--bs-border-color);
-    border-radius: 1rem;
-  }
-  
-  .btn-primary {
-    background-color: var(--bs-primary);
-    border: none;
-  }
-  
-  .btn-primary:hover {
-    background-color: #4752C4;
-  }
-  
-  a {
-    color: var(--bs-primary);
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
+  --bs-body-bg: #1e1f22;
+  --bs-body-color: #ffffff;
+  --bs-primary: #5865F2;
+  --bs-secondary: #2C2F33;
+  --bs-border-color: #40444b;
+}
+
+body {
+  background-color: var(--bs-body-bg);
+  color: var(--bs-body-color);
+}
+
+.card {
+  background-color: var(--bs-secondary);
+  border: 1px solid var(--bs-border-color);
+  border-radius: 1rem;
+}
+
+.btn-primary {
+  background-color: var(--bs-primary);
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #4752C4;
+}
+
+a {
+  color: var(--bs-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
