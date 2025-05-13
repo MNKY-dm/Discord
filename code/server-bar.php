@@ -17,51 +17,55 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
         <?php endforeach; ?>
         <script>
 
-            function changeContent(url, htmlClass) {
-                fetch(url).then(response => {
-                        response = response.text()
-                        return response
-                    }) .then(result => {
-                        document.getElementsByClassName(htmlClass)[0].innerHTML = result
-                    })
+            async function changeContent(url, htmlClass) { // Fonction asynchrone pour que les informations parviennent de manière non blocantes
+                try {
+                    const response = await fetch(url) // on stocke la réponse du fetch dans une variable, après avoir attendu que la promise renvoyée soit résolue
+                    const result = await response.text() // Puis on prend le texte de cette réponse et on le met dans une variable
+                    document.getElementsByClassName(htmlClass)[0].innerHTML = result // Ce qui nous permet ensuite de remplacer le contenu de la page de manière asynchronisée avec le reste
+
+                } catch (error) {
+                    console.error('Erreur lors du changement du contenu : ', error)
+                }
             }
 
+            async function getChannels(serverId) {
+                const response = await fetch('/code/discord_server/get_channels.php?server_id=' + serverId) // Même principe qu'au dessus : on attend que la promise du fetch soit résolue pour stocker le résultat dans la variable response
+                    if (!response.ok) {
+                        console.log(response)
+                        throw new Error('HTTP Error : ' + response.status)
+                    }
+                    return response.json()
+                    
+            }
+
+            async function postChannels(data) { // Fonction asynchrone pour pouvoir utiliser le await dans la fonction clickOnServer afin de bien gérer le temps de résolution des fetch
+                return fetch('save_channels.php', {
+                    method : 'POST',
+                    headers : {'Content-Type': 'application/json'},
+                    body : JSON.stringify(data)
+                })
+            }
+
+            async function clickOnServer(event) {
+                const serverId = event.currentTarget.dataset.serverId // Affecte à serverId la valeur réucpérée grâce à l'attribut data-* 
+                console.log("Serveur cliqué : ", serverId)
+                try {
+                    // Faire toutes les fonctions définies plus haut les unes après les autres pour éviter que les différentes se croisent et fasse échouer l'AJAX
+                    const data = await getChannels(serverId)
+                    await postChannels(data)
+                    await changeContent("/code/channel-fill.php", "content")
+                    await changeContent("/code/channels-bar.php", "side-content")
+                } catch (error) {
+                    console.error('Erreur AJAX : ', error)
+                }                
+            }
 
             document.querySelectorAll("[data-server-id]").forEach(img => { // Sélectionne les éléments qui ont l'attribut 'data-server-id'
 
-                img.addEventListener('click', (event) => { // Pour chaque img trouvée, ajoute un événement "click"
+                img.addEventListener('click', clickOnServer)
 
-                    const serverId = event.currentTarget.dataset.serverId // Récupère la valeur de 'data-server-id' en type str grâce à dataset
-                    console.log('Serveur cliqué :', serverId) // Affiche le résultat dans la console du navigateur pour vérifier si cela fonctionne
-                    fetch("/code/discord_server/get_channels.php?server_id=" + serverId)  // Envoie une requête http asynchrone ('fetch()'), avec l'id du serveur qui convient, depuis le fichier server.php
-                        .then(response => { // Dès que la requête reçoit une réponse, les données sont récupérées en format json (pour rendre les données compatibles entre JS et PHP)
-                            if (!response.ok) {
-                                console.log(response)
-                                throw new Error('HTTP error ' + response.status)
-                            }
-                            return response.json()
-                        })
-                        .then(data => { // Ensuite, affiche les données dans la console pour vérifier une fois de plus si ça fonctionne
-                            try {
-                                fetch("save_channels.php", {
-                                    method : 'POST',
-                                    headers : {'Content-Type': 'application/json'},
-                                    body : JSON.stringify(data)
-                            })
-                            } catch(error) {
-                                console.log('Erreur : ', error)
-                                // window.location.href = "main.php";
-                            }
-                        })
-
-                        .catch(error => { // Si le fetch ne fonctione pas, attrape une erreur
-                            console.error('Erreur AJAX :', error)
-                        })
-                    // window.location.href = "main.php?page=channel&server_id=" + serverId;
-                    changeContent("/code/channel-fill.php", "content")
-                    changeContent("/code/channels-bar.php", "side-content")
-                })
             })
+
         </script>
         <a href="/code/discord_server/create_server_form.php">
             <img src="https://placehold.co/40" alt="Ajouter un serveur">
