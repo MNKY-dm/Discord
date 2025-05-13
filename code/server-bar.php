@@ -6,9 +6,7 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
 
 <div class="server-bar">
     <div class="private-messages">
-        <a href="/code/main.php?page=mp">
-            <img src="https://placehold.co/40" alt="Espace privé">
-        </a>
+        <img src="https://placehold.co/40" alt="Espace privé" id="private-space">
     </div>
     <div class="separator"><div class="server-separator"></div></div>
     <div class="servers">
@@ -56,15 +54,32 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
                     await changeContent("/code/channel-fill.php", "content")
                     await changeContent("/code/channels-bar.php", "side-content")
                 } catch (error) {
-                    console.error('Erreur AJAX : ', error)
+                    console.error("Erreur AJAX lors de l'ouverture de l'espace messages sur le serveur : ", error)
                 }                
             }
 
-            document.querySelectorAll("[data-server-id]").forEach(img => { // Sélectionne les éléments qui ont l'attribut 'data-server-id'
+            async function clickOnPrivate(event) {
+                try {
+                    await changeContent("/code/mp.php", "content")
+                    await changeContent("/code/friends-bar.php", "side-content")
+                } catch (error) {
+                    console.error("Erreur AJAX lors de l'ouverture de l'espace messages privés : ", error)
+                }
+            }
 
-                img.addEventListener('click', clickOnServer)
+            function serverBarClicked(space, CSSSelector) {
+                document.querySelectorAll(CSSSelector).forEach(img => { // Sélectionne les éléments qui ont l'attribut 'data-server-id'
+                if (space === 'private') {
+                    img.addEventListener('click', clickOnPrivate) // Déclenche l'action de manipuler le DOM pour l'espace privé (MP)
+                } else if (space === 'server') {
+                    img.addEventListener('click', clickOnServer) // Déclenche l'action de manipuler le DOM pour les channels, tout en récupérant les channels
+                }
+                })
+            }
 
-            })
+            serverBarClicked('server', "[data-server-id]") // Capte le clic sur les différentes icônes de serveur dans la server-bar
+            serverBarClicked('private', "#private-space") // Capte le clic sur l'icône de l'espace personnel 
+
 
         </script>
         <a href="/code/discord_server/create_server_form.php">
