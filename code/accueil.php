@@ -1,4 +1,4 @@
-<main>
+<div class="content">
     <!-- Top bar de la page d'accueil -->
     <div class="top-bar">
         <div class="friend-username">
@@ -25,7 +25,7 @@
     <!-- Liste des amis -->
     <div class="friends">
         <div class="friend friend-1">
-            <a href="/Discord/code/main.php?page=mp" class="flex-left">
+            <a href="/code/main.php?page=mp" class="flex-left">
                 <img src="https://placehold.co/32" alt="Photo de profil de l'ami n°1" class="profile-picture" height="32px">
                 <p class="friend-display-name gg-semibold" height="32px">Ami 1</p>
             </a>
@@ -61,4 +61,4 @@
             </a>
         </div>
     </div>
-</main>
+</div>

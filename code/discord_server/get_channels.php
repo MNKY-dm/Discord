@@ -12,7 +12,9 @@ if (isset($_GET["server_id"])) {
         echo $json; 
     } catch (PDOException $e) {
         error_log("Erreur de PDO" . $e->getMessage());
+        http_response_code(500);
     }
 } else {
     echo json_encode(['error' => 'Aucun server_id fourni']);
+    http_response_code(500);
 }

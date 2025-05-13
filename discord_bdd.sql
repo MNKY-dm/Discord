@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : lun. 05 mai 2025 à 13:12
+-- Généré le : lun. 12 mai 2025 à 12:19
 -- Version du serveur : 8.0.40
 -- Version de PHP : 8.3.14
 
@@ -32,6 +32,14 @@ CREATE TABLE `channels` (
   `channel_name` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `server_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `channels`
+--
+
+INSERT INTO `channels` (`channel_id`, `channel_name`, `server_id`) VALUES
+(1, 'general', 1),
+(2, 'bienvenue', 1);
 
 -- --------------------------------------------------------
 
@@ -88,7 +96,7 @@ CREATE TABLE `private_messages` (
   `timestamp` timestamp(6) NOT NULL,
   `sender_id` int NOT NULL,
   `receiver_id` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -122,7 +130,9 @@ INSERT INTO `server` (`server_id`, `server_name`, `creator_id`, `admin_id`) VALU
 (12, '', 1, 1),
 (13, '', 1, 1),
 (14, 'kiwi', 1, 1),
-(15, 'kiwi', 1, 1);
+(15, 'kiwi', 1, 1),
+(16, 'ouiouisacrebleu', 1, 1),
+(17, 'yep', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -156,7 +166,9 @@ INSERT INTO `users` (`user_id`, `username`, `email`, `password`) VALUES
 (1000, 'ABOUAB', 'abouab@gmail.com', '$2y$10$y/RhsHagLojjtUhGTonXPuxoYLzOC9pIDd1RJD81RlOJiCBGqM.We'),
 (1001, 'abouab2', 'abouab2@gmail.com', '$2y$10$E.QRnUlwLktyZGpWY4sGCO/302iGvABGZUmkDRz6K2QZTLfPjCIi6'),
 (1002, 'abouab3', 'abouab3@gmail.com', '$2y$10$RQLLaYwO0twnO/jtqmlgx.3mJ/LfysGNRT7H5V5ixjiB2XI/MVBNu'),
-(1003, 'abouab4', 'abouab4@gmail.com', '$2y$10$mmal6IRuyKnypNWf1i/qZO42kfoTuz7oqcokBpSwwALk/axCw4GNG');
+(1003, 'abouab4', 'abouab4@gmail.com', '$2y$10$mmal6IRuyKnypNWf1i/qZO42kfoTuz7oqcokBpSwwALk/axCw4GNG'),
+(1004, 'OOYEA', 'ooyea@yeah.com', '$2y$10$1JwUQvcvOxTvbK278lhCXerA8ZtPqIWz.wZAw/VUHO1Ahylt3skFa'),
+(1005, 'mnky', 'dylan.moulin9272@gmail.com', '$2y$10$q/mYgIroTtDBJaq2bPUORu0YOShTyVx0a/3COzuqXGne0qYsp/lEO');
 
 --
 -- Index pour les tables déchargées
@@ -213,7 +225,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `channels`
 --
 ALTER TABLE `channels`
-  MODIFY `channel_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `channel_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `channel_messages`
@@ -231,13 +243,13 @@ ALTER TABLE `private_messages`
 -- AUTO_INCREMENT pour la table `server`
 --
 ALTER TABLE `server`
-  MODIFY `server_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `server_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1004;
+  MODIFY `user_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1006;
 
 --
 -- Contraintes pour les tables déchargées
