@@ -12,11 +12,18 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
     <div class="separator"><div class="server-separator"></div></div>
     <div class="servers">
         <?php foreach ($servers as $server) : ?>
-            <a href="main.php?server_name=<?=$server['server_name'];?>&page=channel" class="server-link" data-server-id="<?= $server['server_id'] ?>">
-                <img src="https://placehold.co/40" alt="<?= htmlspecialchars($server["server_name"]) ?>">
-            </a>
+            <img src="https://placehold.co/40" alt="<?= htmlspecialchars($server["server_name"]) ?>" data-server-id="<?php echo $server['server_id'] ?>">
         <?php endforeach; ?>
         <script>
+
+            function changeMainContent(url) {
+                fetch(url).then(response => {
+                        response = response.text()
+                        return response
+                    }) .then(result => {
+                        document.getElementsByClassName("content")[0].innerHTML = result
+                    })
+            }
 
             document.querySelectorAll("[data-server-id]").forEach(img => { // Sélectionne les éléments qui ont l'attribut 'data-server-id'
 
@@ -55,6 +62,7 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
                             console.error('Erreur AJAX :', error)
                         })
                     // window.location.href = "main.php?page=channel&server_id=" + serverId;
+                    changeMainContent("/code/channel-fill.php")
                 })
             })
         </script>

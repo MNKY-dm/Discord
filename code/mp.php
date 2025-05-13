@@ -1,6 +1,7 @@
 <?php 
 $title = "Messages privés - Discord";
 ?>
+<div class="content">
     <div class="top-bar">
         <div class="friend-username">
             <img src="https://placehold.co/24" alt="friend-avatar" class="profile-picture">
@@ -146,4 +147,5 @@ $title = "Messages privés - Discord";
             <p class="gg-regular">Voir le profil complet</p>
         </div>
     </div>
+</div>
 

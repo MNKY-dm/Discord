@@ -1,4 +1,4 @@
-<main>
+<div class="content">
     <!-- Top bar de la page d'accueil -->
     <div class="top-bar">
         <div class="friend-username">
@@ -61,4 +61,4 @@
             </a>
         </div>
     </div>
-</main>
+</div>
