@@ -115,6 +115,9 @@ ul {
 
 /* ------------------------------------------------------------- */
 
+main .side-content {
+    background-color: #282B30;
+}
 
 /* ---------------- Style de la barre des amis ----------------- */
 
@@ -122,7 +125,6 @@ ul {
     display: flex;
     flex-direction: column;
     gap: 4px;   
-    background-color: #282B30;
 }
 
 /* -------- Barre de recherche -------- */

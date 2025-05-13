@@ -25,6 +25,15 @@ $servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(P
                     })
             }
 
+            function changeSideContent(url) {
+                fetch(url).then(reponse => {
+                    response = response.text()
+                    return response
+                }) .then(result => {
+                    document.getElementsByClassName("content")[0].innerHTML = result
+                })
+            }
+
             document.querySelectorAll("[data-server-id]").forEach(img => { // Sélectionne les éléments qui ont l'attribut 'data-server-id'
 
                 img.addEventListener('click', (event) => { // Pour chaque img trouvée, ajoute un événement "click"
