@@ -111,6 +111,22 @@ class Server
             return null;
         }
     }
+
+    public static function getServerbyMember(PDO $pdo, int $member_id) {
+        try {
+            $stmt = $pdo->prepare("SELECT server.server_id FROM server INNER JOIN member ON server.server_id = member.server_id WHERE member.user_id = :member_id");
+            $stmt->bindParam(':member_id', $member_id);
+            $stmt->execute();
+    
+            $servers = $stmt->fetchAll();
+            return $servers;
+
+        } catch(PDOException $e) {
+            error_log('Erreur PDO dans getServerbyMember : ' . $e->getMessage());
+            return null;
+        }
+        
+    }
     
 
 
