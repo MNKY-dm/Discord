@@ -52,6 +52,7 @@ html, body {
 
 div.layout {
     background: #44494E;
+    height: 100%;
     color : white;
     display: grid;
     grid-template-columns: 5% 20% 75%; /* Permet de modéliser l'aspect 'en colonnes' des différentes zones de la page */
