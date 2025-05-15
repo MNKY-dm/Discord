@@ -19,7 +19,7 @@ $mp_id = $_GET['mp_id'] ?? null;
     if ($page === 'home' || $page === 'mp') {
         include 'friends-bar.php';
     } elseif ($page === 'channel') {
-        // Récupère les channels du serveur, par exemple via $_SESSION ou une requête
+        // Récupère les channels du serveur, via $_SESSION
         include 'channels-bar.php';
     }
     ?>
