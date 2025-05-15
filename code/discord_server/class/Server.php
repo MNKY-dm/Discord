@@ -28,7 +28,7 @@ class Server
             // Exécute la requête
             $stmt->execute();
 
-            // S'il s'agit d'une sélection, on récupère le résultat dans un objet (voir configuration du fetch dans 'bdd.php)
+            // S'il s'agit d'une sélection, on récupère le résultat dans un tableau associatif (voir configuration du fetch dans 'bdd.php')
             if (stripos($sql, 'SELECT') === 0) {
                 return $single ? $stmt->fetch() : $stmt->fetchAll();
             }

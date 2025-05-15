@@ -1,6 +1,10 @@
 <?php
+if (!isset($_SESSION)) {
+    session_start();
+}
 require_once('bdd.php');
-$servers = $conn->query("SELECT server_id, server_name FROM server")->fetchAll(PDO::FETCH_ASSOC); // Permet de récupérer les serveurs de la base de données
+require_once('discord_server/class/Server.php');
+$servers = Server::getServerbyMember($conn, $_SESSION['user_id']);
 
 ?>
 
