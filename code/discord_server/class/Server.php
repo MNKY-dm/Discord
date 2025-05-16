@@ -77,6 +77,7 @@ class Server
     }
 
 // Impossible d'utiliser safeQuery dans cette fonction car elle est statique
+// Cette fonction renvoie une instance d'un serveur précis
     public static function getServer(PDO $pdo, int $server_id) {
 
         try {
@@ -93,9 +94,9 @@ class Server
             }
             
             // Définit les variables sur les infos repêchées dans les infos server
-            $id = (int)$infos_server[0]->server_id;
-            $server_name = (string)$infos_server[0]->server_name;
-            $creator_id = (int)$infos_server[0]->creator_id;
+            $id = (int)$infos_server[0]['server_id'];
+            $server_name = (string)$infos_server[0]['server_name'];
+            $creator_id = (int)$infos_server[0]['creator_id'];
             
             // Crée une instance de la classe Serveur avec les infos piochées sur la BDD
             $serveur = new Server($pdo, $server_name, $creator_id);
@@ -114,7 +115,7 @@ class Server
 
     public static function getServerbyMember(PDO $pdo, int $member_id) {
         try {
-            $stmt = $pdo->prepare("SELECT server.server_id FROM server INNER JOIN member ON server.server_id = member.server_id WHERE member.user_id = :member_id");
+            $stmt = $pdo->prepare("SELECT server.* FROM server INNER JOIN member ON server.server_id = member.server_id WHERE member.user_id = :member_id");
             $stmt->bindParam(':member_id', $member_id);
             $stmt->execute();
     
