@@ -1,4 +1,3 @@
-
 async function changeContent(url, htmlClass) { // Fonction asynchrone pour que les informations parviennent de manière non blocantes
     try {
         const response = await fetch(url) // on stocke la réponse du fetch dans une variable, après avoir attendu que la promise renvoyée soit résolue
@@ -42,7 +41,7 @@ async function clickOnServer(event) {
     }                
 }
 
-async function clickOnPrivate(event) {
+async function clickOnPrivate() {
     try {
         await changeContent("/code/mp.php", "content")
         await changeContent("/code/friends-bar.php", "side-content")

@@ -4,6 +4,7 @@ if (!isset($_SESSION)) {
 }
 require_once('bdd.php');
 require_once('discord_server/class/Server.php');
+$_SESSION['servers'] = Server::getServerbyMember($conn, $_SESSION['user_id']);
 $servers = $_SESSION['servers'];
 
 ?>

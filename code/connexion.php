@@ -21,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $_SESSION['email'] = $user['email'];
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['is_logged_in'] = true;
-            $_SESSION['servers'] = Server::getServerbyMember($conn, $user['user_id']);
             echo "<p style='color: green;'>Connexion réussie !</p>";
             header("Location: main.php");
             exit();
