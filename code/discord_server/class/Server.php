@@ -6,7 +6,6 @@ class Server
     public $id;
     public $name;
     public $creator_id;
-    public array $member_list = [];
 
     public function __construct (PDO $pdo, string $server_name, int $creator_id) {
         $this->pdo = $pdo;
@@ -133,9 +132,16 @@ class Server
 
     // Méthode qui permet d'ajouter un membre dans le serveur via son id
     public function addMember(int $member_id, int $server_id) {
-        if (!in_array($member_id, $this->member_list)) {
 
-            $this->member_list[] = $member_id;
+        // D'abord récupérer la liste des id des membres 
+        $members1 = $this->getMembers();
+        $members = [];
+        foreach ($members1 as $member) { // Boucle qui permet de réunir tous les tableaux en un seul tableau pour plus de maniabilité
+            $members[] = $member['user_id']; // (pour chaque member dans le tableau de tableau members1, on ajoute member_id dans le tableau initialsement vide 'members')
+        }
+
+        // Si l'utilisateur cible est déjà dans le serveur, on ne l'ajoute pas
+        if (!in_array($member_id, $members)) {
 
             try {
                 $this->safeQuery(

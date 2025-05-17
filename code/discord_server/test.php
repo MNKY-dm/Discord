@@ -6,4 +6,3 @@ $server1 = Server::getServer($conn, 1);
 
 $server1->addMember(19, 1);
 
-var_dump($server1->member_list) ;
