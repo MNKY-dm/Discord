@@ -1,4 +1,7 @@
 <?php 
+if (!isset($_SESSION)) {
+    session_start();
+}
 require_once("../bdd.php");
 
 if (isset($_GET["server_id"])) {
@@ -9,7 +12,8 @@ if (isset($_GET["server_id"])) {
         $channels = $stmt->fetchAll(PDO::FETCH_ASSOC);
         header('Content-Type: application/json');
         $json = json_encode($channels);
-        echo $json; 
+        echo $json;
+        $_SESSION['current-server-id'] = $serverId;
     } catch (PDOException $e) {
         error_log("Erreur de PDO" . $e->getMessage());
         http_response_code(500);
