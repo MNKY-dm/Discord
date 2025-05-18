@@ -20,12 +20,16 @@ class Server
             $stmt = $this->pdo->prepare($sql);
             foreach ($params as $key => $value) {
                 // Pour chaque paramètre passé dans le tableau '$params', la clé est remplacée par la variable voulue
-                $stmt->bindValue($key, $value);
+                try {
+                    $stmt->bindValue($key, $value);
+                } catch (PDOException $e) {
+                    error_log("Erreur dans BindValue : " . $e->getMessage());
+                }
             }
             // Exécute la requête
             $stmt->execute();
             
-            // S'il s'agit d'une sélection, on récupère le résultat dans un tableau associatif (voir configuration du fetch dans 'bdd.php')
+            // S'il s'agit d'une sélection, on récupère le résultat dans un tableau associatif (voir configuration du fetchAll dans 'bdd.php'), ou sur une seule ligne
             if (stripos($sql, 'SELECT') === 0) {
                 return $single ? $stmt->fetch() : $stmt->fetchAll();
             }
@@ -112,7 +116,7 @@ class Server
         }
     }
 
-    public static function getServerbyMember(PDO $pdo, int $member_id) {
+    public static function getServerbyMember(PDO $pdo, int $member_id) { // Méthode qui renvoie un tableau associatif contennat la liste des serveurs don tle membre renseigné est membre
         try {
             $stmt = $pdo->prepare("SELECT server.* FROM server INNER JOIN member ON server.server_id = member.server_id WHERE member.user_id = :member_id");
             $stmt->bindParam(':member_id', $member_id);
@@ -136,7 +140,7 @@ class Server
         // D'abord récupérer la liste des id des membres 
         $members1 = $this->getMembers();
         $members = [];
-        foreach ($members1 as $member) { // Boucle qui permet de réunir tous les tableaux en un seul tableau pour plus de maniabilité
+        foreach ($members1 as $member) { // Boucle qui permet de réunir tous les tableaux renvoyés par getMembers() en un seul tableau pour plus de maniabilité
             $members[] = $member['user_id']; // (pour chaque member dans le tableau de tableau members1, on ajoute member_id dans le tableau initialsement vide 'members')
         }
 
@@ -172,7 +176,8 @@ class Server
     public function getMembers () {
 
         return $this->safeQuery(
-            "SELECT * FROM member INNER JOIN server ON member.server_id = server.server_id"
+            "SELECT member.* FROM member INNER JOIN server ON member.server_id = server.server_id WHERE member.server_id = :server_id",
+            [':server_id' => $this->id]
         );
 
     }

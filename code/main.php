@@ -32,6 +32,7 @@ $mp_id = $_GET['mp_id'] ?? null;
             include 'mp.php';
         } elseif ($page === 'channel') {
             include 'channel-fill.php';
+            echo "<script src='js/script_get_messages.js'></script>";
         } elseif ($page === 'create_server') {
             include 'discord-server/create_server_form.php';
         }
