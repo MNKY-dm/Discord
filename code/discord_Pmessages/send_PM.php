@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!empty($msg)) {
         $stmt = $conn->prepare(
-            "INSERT INTO channel_messages (sender_id, channel_id, timestamp, message_content)
+            "INSERT INTO private_messages (sender_id, receiver_id, timestamp, message_content)
              VALUES (:sender, :channel, NOW(), :msg)"
         );
         $stmt->execute([
