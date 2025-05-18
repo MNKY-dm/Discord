@@ -18,7 +18,7 @@ function initMessages(channelId) {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         const msg = document.getElementById('message').value;
-        await fetch('discord-messages/send_messages.php', {
+        await fetch('discord-messages/send_messages.php?channel_id=' + channelId, {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: `message=${encodeURIComponent(msg)}`

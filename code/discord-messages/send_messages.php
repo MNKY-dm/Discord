@@ -1,5 +1,10 @@
 <?php
 require '../bdd.php';
+if (!isset($_SESSION)) {
+    session_start();
+}
+$user_id = $_SESSION['user_id'];
+$channel_id = $_GET['channel_id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $msg = trim($_POST['message'] ?? '');
@@ -10,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              VALUES (:sender, :channel, NOW(), :msg)"
         );
         $stmt->execute([
-            'sender' => 1,    // Use a valid user_id from your users/member table
-            'channel' => 1,   // Use a valid channel_id from your channels table
+            'sender' => $user_id,    
+            'channel' => $channel_id,  // ici on utilisait des valeurs par défaut avant de mettre $channel_id et $user_id
             'msg' => $msg
         ]);
     }
