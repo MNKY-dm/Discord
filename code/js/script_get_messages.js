@@ -1,11 +1,10 @@
-console.log('oui')
-function initMessages() {
+function initMessages(channelId) {
     const container = document.getElementById('messages');
     const form = document.getElementById('msgForm');
     if (!container || !form) return;
 
     async function loadMessages() {
-        const res = await fetch('discord-messages/get_messages.php');
+        const res = await fetch('discord-messages/get_messages.php?channel_id=' + channelId);
         const data = await res.json();
         container.innerHTML = data.map(m => 
             `<div class="message">
@@ -32,8 +31,30 @@ function initMessages() {
     loadMessages();
 }
 
+function initChannelClicks() {
+    // On cible les bons éléments qui ont data-channel-id
+    document.querySelectorAll('.channel-cosmetic[data-channel-id]').forEach(channel => {
+        channel.addEventListener('click', function(event) {
+            event.preventDefault();
+            const channelId = this.dataset.channelId;
+            // Appelle ici ta logique pour changer de channel
+            if (typeof clickOnChannel === 'function') {
+                // On passe le vrai event et le bon channelId
+                clickOnChannel({ 
+                    currentTarget: this, 
+                    preventDefault: () => {}, 
+                    channelId: channelId 
+                });
+            }
+        });
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('messages') && document.getElementById('msgForm')) {
-        initMessages();
+    const channelId = document.getElementById('messages')?.dataset.channelId
+        || new URLSearchParams(window.location.search).get('channel_id');
+    if (document.getElementById('messages') && document.getElementById('msgForm') && channelId) {
+        initMessages(channelId);
     }
+    initChannelClicks();
 });

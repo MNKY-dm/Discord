@@ -45,6 +45,24 @@ async function clickOnServer(event) {
     }
 }
 
+async function clickOnChannel(event) {
+    event.preventDefault();
+    // Récupère le channelId depuis l'event ou le dataset
+    const channelId = event.channelId || event.currentTarget.dataset.channelId;
+    const serverId = document.querySelector('[data-server-id]')?.dataset.serverId || window.location.search.match(/server_id=(\d+)/)?.[1];
+    console.log("Channel cliqué : ", channelId);
+    try {
+        // Ici tu peux adapter la logique pour charger les messages du bon channel
+        await changeContent("/code/channel-fill.php", "content");
+        if (typeof initMessages === 'function') {
+            initMessages(channelId);
+        }
+        history.pushState({}, '', `/code/main.php?page=channel&server_id=${serverId}&channel_id=${channelId}`);
+    } catch (error) {
+        console.error("Erreur AJAX lors de l'ouverture de l'espace messages sur le channel : ", error);
+    }
+}
+
 async function clickOnPrivate(event) {
     event.preventDefault(); 
     try {
