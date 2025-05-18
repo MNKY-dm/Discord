@@ -1,13 +1,10 @@
 <?php
-require 'config.php';
+require '../bdd.php';
 
-$result = $conn->query("SELECT * FROM messages ORDER BY created_at DESC LIMIT 20");
-$messages = [];
-
-while ($row = $result->fetch_assoc()) {
-    $messages[] = $row;
-}
+$stmt = $conn->prepare("SELECT message_content FROM channel_messages ORDER BY timestamp DESC LIMIT 20");
+$stmt->execute();
+$rows = $stmt->fetchAll();
 
 header('Content-Type: application/json');
-echo json_encode(array_reverse($messages)); // show oldest first
+echo json_encode(array_reverse($rows)); // oldest first
 ?>
