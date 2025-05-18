@@ -36,6 +36,9 @@ async function clickOnServer(event) {
         await postChannels(data)
         await changeContent("/code/channel-fill.php", "content")
         await changeContent("/code/channels-bar.php", "side-content")
+
+        // Permet de changer l'URL sans recharger la page pour faire passer $_GET['page'] en 'channel' + l'id du serveur courant
+        history.pushState({}, '', `/code/main.php?page=channel&server_id=${serverId}`);
     } catch (error) {
         console.error("Erreur AJAX lors de l'ouverture de l'espace messages sur le serveur : ", error)
     }                
@@ -45,6 +48,9 @@ async function clickOnPrivate() {
     try {
         await changeContent("/code/mp.php", "content")
         await changeContent("/code/friends-bar.php", "side-content")
+        
+        // Permet de changer l'URL sans recharger la page pour faire passer $_GET['page'] en 'mp'
+        history.pushState({}, '', `/code/main.php?page=mp`);
     } catch (error) {
         console.error("Erreur AJAX lors de l'ouverture de l'espace messages privés : ", error)
     }
