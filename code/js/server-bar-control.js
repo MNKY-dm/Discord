@@ -28,23 +28,25 @@ async function postChannels(data) { // Fonction asynchrone pour pouvoir utiliser
 }
 
 async function clickOnServer(event) {
-    const serverId = event.currentTarget.dataset.serverId // Affecte à serverId la valeur réucpérée grâce à l'attribut data-* 
-    console.log("Serveur cliqué : ", serverId)
+    event.preventDefault(); 
+    const serverId = event.currentTarget.dataset.serverId;
+    console.log("Serveur cliqué : ", serverId);
     try {
-        // Faire toutes les fonctions définies plus haut les unes après les autres pour éviter que les différentes se croisent et fasse échouer l'AJAX
-        const data = await getChannels(serverId)
-        await postChannels(data)
-        await changeContent("/code/channel-fill.php", "content")
-        await changeContent("/code/channels-bar.php", "side-content")
-
-        // Permet de changer l'URL sans recharger la page pour faire passer $_GET['page'] en 'channel' + l'id du serveur courant
+        const data = await getChannels(serverId);
+        await postChannels(data);
+        await changeContent("/code/channel-fill.php", "content");
+        if (typeof initMessages === 'function') {
+            initMessages();
+        }
+        await changeContent("/code/channels-bar.php", "side-content");
         history.pushState({}, '', `/code/main.php?page=channel&server_id=${serverId}`);
     } catch (error) {
-        console.error("Erreur AJAX lors de l'ouverture de l'espace messages sur le serveur : ", error)
-    }                
+        console.error("Erreur AJAX lors de l'ouverture de l'espace messages sur le serveur : ", error);
+    }
 }
 
-async function clickOnPrivate() {
+async function clickOnPrivate(event) {
+    event.preventDefault(); 
     try {
         await changeContent("/code/mp.php", "content")
         await changeContent("/code/friends-bar.php", "side-content")
@@ -67,4 +69,4 @@ function serverBarClicked(space, CSSSelector) {
 }
 
 serverBarClicked('server', "[data-server-id]") // Capte le clic sur les différentes icônes de serveur dans la server-bar
-serverBarClicked('private', "#private-space") // Capte le clic sur l'icône de l'espace personnel 
+serverBarClicked('private', "#private-space") // Capte le clic sur l'icône de l'espace personnel
