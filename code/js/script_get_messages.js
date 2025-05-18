@@ -37,7 +37,6 @@ function initChannelClicks() {
         channel.addEventListener('click', function(event) {
             event.preventDefault();
             const channelId = this.dataset.channelId;
-            // Appelle ici ta logique pour changer de channel
             if (typeof clickOnChannel === 'function') {
                 // On passe le vrai event et le bon channelId
                 clickOnChannel({ 
