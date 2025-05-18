@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -7,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $password = htmlspecialchars(trim($_POST['password']));
 
     require_once 'bdd.php';
+    require_once 'discord_server/class/Server.php';
 
     $stmt = $conn -> prepare("SELECT * FROM users WHERE email = :email");
     $stmt -> bindParam(':email', $email);
