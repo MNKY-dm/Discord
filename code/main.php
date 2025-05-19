@@ -29,7 +29,7 @@ $mp_id = $_GET['mp_id'] ?? null;
         if ($page === 'home') {
             include 'accueil.php';
         } elseif ($page === 'mp') {
-            include 'PM.php';
+            include 'pm.php';
         } elseif ($page === 'channel') {
             include 'channel-fill.php';
             echo "<script src='js/script_get_messages.js'></script>";
